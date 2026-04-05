@@ -1,4 +1,4 @@
-﻿# Ai-Code-Lab
+
 # 🤖 AI CodeLab
 
 > A beginner-friendly learning platform for Programming and Artificial Intelligence
