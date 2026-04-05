@@ -1,0 +1,1337 @@
+<style>
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python for Beginners</title>
+    <!-- Adding Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+    --primary-color: #6200ea;
+    --primary-light: #9d46ff;
+    --primary-dark: #0a00b6;
+    --secondary-color: #03dac6;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --text-light: #ffffff;
+    --background-light: #ffffff;
+    --background-dark: #f5f5f5;
+    --success-color: #4caf50;
+    --warning-color: #ff9800;
+    --error-color: #f44336;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+}
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            overflow-x: hidden;
+            font-family: 'Roboto', sans-serif;
+           color: var(--text-primary);
+            background-color: var(--background-light);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Page Title Banner */
+        .page-title {
+            background-color: #f89b24;
+            color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: #5382a1;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .main-nav a:hover {
+            background-color: #f89b24;
+            transform: translateY(-2px);
+        }
+
+        /* Content Layout */
+        .content-wrapper {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        main {
+            flex: 1 1 70%;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        main h1, main h2 {
+            color: #5382a1;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f89b24;
+            padding-bottom: 10px;
+        }
+
+        main p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        main ul, main ol {
+            margin: 20px 0 20px 40px;
+        }
+
+        main li {
+            margin-bottom: 10px;
+        }
+
+        /* Code Blocks */
+        pre {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        code {
+            font-family: 'Consolas', monospace;
+            display: block;
+        }
+
+        /* Side Navigation */
+        .side-nav {
+            flex: 1 1 30%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 90px;
+            max-height: calc(100vh - 120px); /* Adjust based on your header and footer height */
+            overflow-y: auto;
+        }
+
+        .side-nav h2 {
+            color: #5382a1;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f89b24;
+            padding-bottom: 10px;
+        }
+
+        .side-nav a {
+            display: flex;
+            align-items: center;
+            color: #333;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .side-nav a:hover {
+            background-color: #5382a1;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .side-nav a i {
+            margin-right: 10px;
+            color: #f89b24;
+        }
+
+        .side-nav a:hover i {
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #5382a1;
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 30px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .side-nav {
+                position: static;
+                width: 100%;
+                max-height: none;
+                overflow-y: visible;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .main-nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            .main-nav.active {
+                display: flex;
+            }
+            
+            .main-nav a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 24px;
+            }
+            
+            main {
+                padding: 15px;
+            }
+            
+            .page-title h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Title Banner -->
+    <div class="page-title">
+        <h2>C++ for Beginners: A Complete Guide</h2>
+    </div>
+
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Ai CodeLab</div>
+                <!-- Mobile menu toggle button -->
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav class="main-nav" id="mainNav">
+                    <a target="_blank" href="codelab-html.html"><i class="fas fa-home"></i> HTML</a>
+                    <a target="_blank" href="codelab-css.html"><i class="fas fa-graduation-cap"></i> CSS</a>  
+                    <a target="_blank" href="codelab-javascript.html"><i class="fas fa-sign-in-alt"></i> JavaScript</a> 
+                    <a target="_blank" href="codelab-python.html"><i class="fas fa-book"></i> Python</a>
+                    <a target="_blank" href="codelab-java.html"><i class="fas fa-sign-in-alt"></i> Java</a> 
+                    <a target="_blank" href="codelab-cpp.html"><i class="fas fa-book"></i> C++</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="container">
+        <div class="content-wrapper">
+            <!-- Main Content -->
+            <main>
+              <!-- intro -->
+              <h1 id="introduction">Introduction to C++</h1>
+              <p>C++ is a high-performance, compiled programming language known for its efficiency and flexibility. Created by <strong>Bjarne Stroustrup</strong> in 1983, C++ is widely used in system programming, game development, competitive programming, embedded systems, and more.</p>
+              
+              <h2 id="why-learn-cpp">Why Learn C++?</h2>
+              <ul>
+                  <li><strong>High Performance</strong> – Faster execution compared to interpreted languages.</li>
+                  <li><strong>Versatile</strong> – Used for game development, operating systems, and real-time applications.</li>
+                  <li><strong>Object-Oriented</strong> – Supports OOP principles like encapsulation and inheritance.</li>
+                  <li><strong>Strong Community Support</strong> – Extensive resources, libraries, and frameworks.</li>
+                  <li><strong>Career Opportunities</strong> – In demand for software development and system programming.</li>
+                  <li><strong>Cross-Platform</strong> – Runs on Windows, macOS, and Linux.</li>
+              </ul>
+              
+
+                <!-- Installing -->
+                <h2 id="installing-cpp">Installing C++</h2>
+                <ol>
+                    <li>Download and install a C++ compiler such as <a href="https://sourceforge.net/projects/mingw/">MinGW</a> (Windows) or use <strong>g++</strong> (Linux/macOS).</li>
+                    <li>Verify installation by running:</li>
+                    <pre><code>g++ --version</code></pre>
+                    <li>Use an IDE like <strong>Code::Blocks</strong>, <strong>Visual Studio Code</strong>, or <strong>Dev-C++</strong> for writing C++ programs.</li>
+                </ol>
+                
+                <!-- Basics -->
+                <h2 id="cpp-basics">C++ Basics</h2>
+
+                <h3 id="hello-world">Hello World Program</h3>
+                <pre><code>#include &lt;iostream&gt;
+                using namespace std;
+                
+                int main() {
+                    cout << "Hello, World!" << endl;
+                    return 0;
+                }
+                </code></pre>
+                
+                <p><strong id="variables-data-types">Variables and Data Types in C++</strong></p>  
+                <p>In C++, a <strong>variable</strong> is a named storage location in memory. You must declare a variable with its <strong>data type</strong> before using it. For example, <code>string name = "Alice";</code> stores the text "Alice" in the variable <code>name</code>. C++ has various data types:</p>  
+                
+                <p><strong>Integer:</strong> Whole numbers e.g., <code>int x = 10;</code> </p>  
+                <p><strong>Float:</strong> Decimal numbers e.g., <code>float price = 10.5;</code></p>  
+                <p><strong>Double:</strong> More precise decimal numbers e.g., <code>double pi = 3.14159;</code></p>  
+                <p><strong>Character:</strong> Single character e.g., <code>char grade = 'A';</code></p>  
+                <p><strong>Boolean:</strong> True or False values e.g., <code>bool isRaining = false;</code></p>  
+                
+                <p>C++ is a <strong>statically typed</strong> language, meaning you must specify the data type when declaring a variable. You can use the <code>typeid()</code> function (from the <code>typeinfo</code> library) to check a variable’s type.</p>
+                
+                <pre><code>#include &lt;iostream&gt;
+                using namespace std;
+                
+                int main() {
+                    string name = "Shifa";
+                    int age = 20;
+                    bool isStudent = true;
+                
+                    cout << "Name: " << name << endl;
+                    cout << "Age: " << age << endl;
+                    cout << "Is Student: " << isStudent << endl;
+                
+                    return 0;
+                }
+                </code></pre>
+                
+                
+
+
+                <!-- input ouput and cntrol statements -->
+                <h3 id="input-output">Input and Output</h3>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    string name;
+    cout << "Enter your name: ";
+    cin >> name;
+    cout << "Hello, " << name << "!" << endl;
+    return 0;
+}
+</code></pre>
+
+<h2 id="control-statements">Control Statements in C++</h2>
+
+<p>Control statements help us <strong>control the flow of a program</strong> based on conditions and loops. There are two main types:</p>
+<ul>
+    <li><strong>If-Else Statements</strong> – Used to make decisions</li>
+    <li><strong>Loops</strong> – Used to repeat a block of code</li>
+</ul>
+
+<h3 id="if-else">1️⃣ If-Else Statement</h3>
+<p>An <strong>if-else statement</strong> checks a condition and decides what to do based on whether the condition is <strong>true or false</strong>.</p>
+
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int age;
+    cout << "Enter your age: ";
+    cin >> age;
+
+    if (age >= 18) {
+        cout << "You are an adult." << endl;
+    } else {
+        cout << "You are a minor." << endl;
+    }
+    return 0;
+}
+</code></pre>
+
+<p><strong>How it works?</strong></p>
+<ul>
+    <li>The program asks the user to enter their age.</li>
+    <li>The <code>if</code> condition checks if the age is <strong>18 or more</strong>.</li>
+    <li>If <strong>true</strong>, it prints <em>"You are an adult."</em></li>
+    <li>If <strong>false</strong>, it prints <em>"You are a minor."</em></li>
+</ul>
+
+<p>💡 <strong>Use case:</strong> If-Else is useful when making <strong>decisions</strong>, like checking if a user is old enough to vote.</p>
+
+<hr>
+
+<!-- operators -->
+
+<h2 id="operators">Operators in C++</h2>
+
+<p>Operators in C++ are symbols that perform operations on variables and values. C++ supports different types of operators.</p>
+
+<h3>🔹 Types of Operators in C++</h3>
+<ul>
+    <li><strong>Arithmetic Operators</strong></li>
+    <li><strong>Relational (Comparison) Operators</strong></li>
+    <li><strong>Logical Operators</strong></li>
+    <li><strong>Bitwise Operators</strong></li>
+    <li><strong>Assignment Operators</strong></li>
+    <li><strong>Increment & Decrement Operators</strong></li>
+    <li><strong>Conditional (Ternary) Operator</strong></li>
+</ul>
+
+<h3>📌 1. Arithmetic Operators</h3>
+<p>These operators perform mathematical operations.</p>
+<table border="1">
+    <tr>
+        <th>Operator</th>
+        <th>Description</th>
+        <th>Example</th>
+    </tr>
+    <tr>
+        <td><code>+</code></td>
+        <td>Addition</td>
+        <td><code>a + b</code></td>
+    </tr>
+    <tr>
+        <td><code>-</code></td>
+        <td>Subtraction</td>
+        <td><code>a - b</code></td>
+    </tr>
+    <tr>
+        <td><code>*</code></td>
+        <td>Multiplication</td>
+        <td><code>a * b</code></td>
+    </tr>
+    <tr>
+        <td><code>/</code></td>
+        <td>Division</td>
+        <td><code>a / b</code></td>
+    </tr>
+    <tr>
+        <td><code>%</code></td>
+        <td>Modulus (Remainder)</td>
+        <td><code>a % b</code></td>
+    </tr>
+</table>
+
+<h3>📌 2. Relational (Comparison) Operators</h3>
+<p>These operators compare two values.</p>
+<table border="1">
+    <tr>
+        <th>Operator</th>
+        <th>Description</th>
+        <th>Example</th>
+    </tr>
+    <tr>
+        <td><code>==</code></td>
+        <td>Equal to</td>
+        <td><code>a == b</code></td>
+    </tr>
+    <tr>
+        <td><code>!=</code></td>
+        <td>Not equal to</td>
+        <td><code>a != b</code></td>
+    </tr>
+    <tr>
+        <td><code>&gt;</code></td>
+        <td>Greater than</td>
+        <td><code>a &gt; b</code></td>
+    </tr>
+    <tr>
+        <td><code>&lt;</code></td>
+        <td>Less than</td>
+        <td><code>a &lt; b</code></td>
+    </tr>
+    <tr>
+        <td><code>&gt;=</code></td>
+        <td>Greater than or equal to</td>
+        <td><code>a &gt;= b</code></td>
+    </tr>
+    <tr>
+        <td><code>&lt;=</code></td>
+        <td>Less than or equal to</td>
+        <td><code>a &lt;= b</code></td>
+    </tr>
+</table>
+
+<h3>📌 3. Logical Operators</h3>
+<p>These operators are used to combine conditional expressions.</p>
+<table border="1">
+    <tr>
+        <th>Operator</th>
+        <th>Description</th>
+        <th>Example</th>
+    </tr>
+    <tr>
+        <td><code>&&</code></td>
+        <td>Logical AND</td>
+        <td><code>(a > 5) && (b < 10)</code></td>
+    </tr>
+    <tr>
+        <td><code>||</code></td>
+        <td>Logical OR</td>
+        <td><code>(a > 5) || (b < 10)</code></td>
+    </tr>
+    <tr>
+        <td><code>!</code></td>
+        <td>Logical NOT</td>
+        <td><code>!(a == b)</code></td>
+    </tr>
+</table>
+
+<h3>📌 4. Bitwise Operators</h3>
+<p>These operators perform operations at the bit level.</p>
+<table border="1">
+    <tr>
+        <th>Operator</th>
+        <th>Description</th>
+        <th>Example</th>
+    </tr>
+    <tr>
+        <td><code>&</code></td>
+        <td>Bitwise AND</td>
+        <td><code>a & b</code></td>
+    </tr>
+    <tr>
+        <td><code>|</code></td>
+        <td>Bitwise OR</td>
+        <td><code>a | b</code></td>
+    </tr>
+    <tr>
+        <td><code>^</code></td>
+        <td>Bitwise XOR</td>
+        <td><code>a ^ b</code></td>
+    </tr>
+    <tr>
+        <td><code>~</code></td>
+        <td>Bitwise NOT</td>
+        <td><code>~a</code></td>
+    </tr>
+    <tr>
+        <td><code>&lt;&lt;</code></td>
+        <td>Left Shift</td>
+        <td><code>a &lt;&lt; 1</code></td>
+    </tr>
+    <tr>
+        <td><code>&gt;&gt;</code></td>
+        <td>Right Shift</td>
+        <td><code>a &gt;&gt; 1</code></td>
+    </tr>
+</table>
+
+<h3>📌 5. Assignment Operators</h3>
+<p>These operators assign values to variables.</p>
+<table border="1">
+    <tr>
+        <th>Operator</th>
+        <th>Description</th>
+        <th>Example</th>
+    </tr>
+    <tr>
+        <td><code>=</code></td>
+        <td>Assign</td>
+        <td><code>a = b</code></td>
+    </tr>
+    <tr>
+        <td><code>+=</code></td>
+        <td>Add and assign</td>
+        <td><code>a += b</code></td>
+    </tr>
+    <tr>
+        <td><code>-=</code></td>
+        <td>Subtract and assign</td>
+        <td><code>a -= b</code></td>
+    </tr>
+    <tr>
+        <td><code>*=</code></td>
+        <td>Multiply and assign</td>
+        <td><code>a *= b</code></td>
+    </tr>
+    <tr>
+        <td><code>/=</code></td>
+        <td>Divide and assign</td>
+        <td><code>a /= b</code></td>
+    </tr>
+    <tr>
+        <td><code>%=</code></td>
+        <td>Modulus and assign</td>
+        <td><code>a %= b</code></td>
+    </tr>
+</table>
+
+<h3>📌 6. Increment & Decrement Operators</h3>
+<p>These operators increase or decrease a variable’s value.</p>
+<ul>
+    <li><code>++</code> (Increment) → Increases value by 1</li>
+    <li><code>--</code> (Decrement) → Decreases value by 1</li>
+</ul>
+
+<h3>📌 7. Conditional (Ternary) Operator</h3>
+<p>A shorthand way of writing an if-else statement.</p>
+<pre><code>result = (a > b) ? a : b;</code></pre>
+
+<h3>✅ Summary</h3>
+<p>Operators in C++ are essential for performing calculations, comparisons, and logical operations. Understanding them is key to writing efficient C++ programs.</p>
+
+
+<!-- Constructor & Distrutor -->
+
+<h2 id="constructors-destructors">Constructors and Destructors in C++</h2>
+
+<p>In C++, <strong>constructors</strong> and <strong>destructors</strong> are special member functions used for initializing and cleaning up objects automatically.</p>
+
+<h3>🔹 What is a Constructor?</h3>
+<ul>
+    <li>A <strong>constructor</strong> is a special function that is automatically called when an object is created.</li>
+    <li>It has the same name as the class and does not have a return type.</li>
+</ul>
+
+<h3>📌 Example Code:</h3>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Person {
+public:
+    string name;
+    int age;
+
+    // Constructor
+    Person(string n, int a) {
+        name = n;
+        age = a;
+        cout << "Constructor called for " << name << endl;
+    }
+
+    void display() {
+        cout << "Name: " << name << ", Age: " << age << endl;
+    }
+};
+
+int main() {
+    Person p1("Alice", 25);
+    p1.display();
+
+    return 0;
+}
+</code></pre>
+
+<h3>🔹 What is a Destructor?</h3>
+<ul>
+    <li>A <strong>destructor</strong> is a special function that is automatically called when an object is destroyed.</li>
+    <li>It has the same name as the class but is preceded by a tilde (<code>~</code>).</li>
+</ul>
+
+<h3>📌 Example Code:</h3>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Person {
+public:
+    string name;
+
+    // Constructor
+    Person(string n) {
+        name = n;
+        cout << "Constructor called for " << name << endl;
+    }
+
+    // Destructor
+    ~Person() {
+        cout << "Destructor called for " << name << endl;
+    }
+};
+
+int main() {
+    Person p1("Bob");
+    return 0;
+}
+</code></pre>
+
+<h3>🔹 Types of Constructors</h3>
+
+<h4>1️⃣ Default Constructor</h4>
+<p>A constructor with no parameters.</p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Example {
+public:
+    Example() { // Default Constructor
+        cout << "Default Constructor called!" << endl;
+    }
+};
+
+int main() {
+    Example obj; // Constructor is called automatically
+    return 0;
+}
+</code></pre>
+
+<h4>2️⃣ Parameterized Constructor</h4>
+<p>A constructor that takes arguments.</p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Car {
+public:
+    string brand;
+
+    // Parameterized Constructor
+    Car(string b) {
+        brand = b;
+        cout << "Car brand: " << brand << endl;
+    }
+};
+
+int main() {
+    Car c1("Toyota");
+    Car c2("Honda");
+    return 0;
+}
+</code></pre>
+
+<h4>3️⃣ Copy Constructor</h4>
+<p>A constructor that copies values from one object to another.</p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Number {
+public:
+    int value;
+
+    // Parameterized Constructor
+    Number(int v) { 
+        value = v;
+    }
+
+    // Copy Constructor
+    Number(const Number &obj) {
+        value = obj.value;
+    }
+
+    void display() {
+        cout << "Value: " << value << endl;
+    }
+};
+
+int main() {
+    Number num1(10);
+    Number num2 = num1; // Calls copy constructor
+
+    num2.display();
+    return 0;
+}
+</code></pre>
+
+<h3>✅ Why Use Constructors and Destructors?</h3>
+<ul>
+    <li><strong>Automatic Initialization</strong> → Constructors initialize objects automatically.</li>
+    <li><strong>Memory Management</strong> → Destructors free memory when objects are destroyed.</li>
+    <li><strong>Code Simplicity</strong> → Avoids manual setup and cleanup of objects.</li>
+</ul>
+
+<h3>🚀 Demonstrating Constructor and Destructor Execution</h3>
+<p>Let's see how constructors and destructors work together.</p>
+
+<h3>📌 Example Code:</h3>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Demo {
+public:
+    // Constructor
+    Demo() {
+        cout << "Constructor executed!" << endl;
+    }
+
+    // Destructor
+    ~Demo() {
+        cout << "Destructor executed!" << endl;
+    }
+};
+
+int main() {
+    cout << "Creating an object..." << endl;
+    Demo obj;  // Constructor is called
+    cout << "Object is about to be destroyed..." << endl;
+    
+    return 0; // Destructor is called automatically
+}
+</code></pre>
+
+<p>Understanding constructors and destructors in C++ helps in efficient memory management and simplifies object initialization!</p>
+
+              <!-- loopps in C++ -->
+
+              <h3 id="loops">2️⃣ Loops in C++</h3>
+              <p>Loops are used to <strong>repeat</strong> a block of code multiple times. C++ has three main loops:</p>
+              
+              <h4 id="for-loop">🔹 For Loop</h4>
+              <p>A <strong>for loop</strong> is used when we know <strong>how many times</strong> we want to repeat something.</p>
+              
+              <pre><code>#include &lt;iostream&gt;
+              using namespace std;
+              
+              int main() {
+                  for (int i = 0; i < 5; i++) {
+                      cout << i << endl;
+                  }
+                  return 0;
+              }
+              </code></pre>
+              
+              <p><strong>How it works?</strong></p>
+              <ul>
+                  <li><code>int i = 0;</code> initializes the loop variable.</li>
+                  <li><code>i < 5;</code> is the condition that keeps the loop running.</li>
+                  <li><code>i++;</code> increases <code>i</code> by 1 in each iteration.</li>
+                  <li>The loop runs 5 times, printing numbers <strong>0 to 4</strong> one by one.</li>
+              </ul>
+              
+              <p>💡 <strong>Use case:</strong> Use a <strong>for loop</strong> when you want to repeat a task a set number of times, like printing numbers or iterating over an array.</p>
+              
+              <hr>
+              
+              <h4 id="while-loop">🔹 While Loop</h4>
+              <p>A <strong>while loop</strong> runs as long as a condition is <strong>true</strong>.</p>
+              
+              <pre><code>#include &lt;iostream&gt;
+              using namespace std;
+              
+              int main() {
+                  int x = 0;
+                  while (x < 5) {
+                      cout << x << endl;
+                      x++;
+                  }
+                  return 0;
+              }
+              </code></pre>
+              
+              <p><strong>How it works?</strong></p>
+              <ul>
+                  <li>The loop starts with <code>x = 0</code>.</li>
+                  <li>The condition <code>x &lt; 5</code> is checked before each loop run.</li>
+                  <li>Inside the loop, <code>x</code> is printed, and then <strong>increased by 1</strong> <code>x++;</code>.</li>
+                  <li>The loop stops when <code>x</code> becomes <strong>5</strong>.</li>
+              </ul>
+              
+              <p>💡 <strong>Use case:</strong> Use a <strong>while loop</strong> when you <strong>don't know how many times</strong> the loop should run, like waiting for user input.</p>
+              
+              <hr>
+        
+
+                          <!-- Functions -->
+                          <h2 id="functions">Functions in C++</h2>
+
+                          <p>A <strong>function</strong> in C++ is a reusable block of code that performs a specific task. Instead of writing the same code again and again, we can use functions to make our programs shorter and easier to understand.</p>
+                          
+                          <h3>📌 Example Code:</h3>
+                          <pre><code>#include &lt;iostream&gt;
+                          using namespace std;
+                          
+                          // Function definition
+                          string greet(string name) {
+                              return "Hello, " + name;
+                          }
+                          
+                          int main() {
+                              cout << greet("Shifa") << endl;
+                              return 0;
+                          }
+                          </code></pre>
+                          
+                          <h3>🔹 How This Code Works?</h3>
+                          <ul>
+                              <li>The function <code>greet(string name)</code> is defined before <code>main()</code>.</li>
+                              <li>It takes one <strong>input parameter (name)</strong>.</li>
+                              <li>Inside the function, it returns <strong>"Hello, " + name</strong>, which means it adds the name to "Hello, ".</li>
+                              <li>We call the function using <code>cout << greet("Shifa")</code>.</li>
+                              <li>This prints <strong>"Hello, Shifa"</strong> on the screen.</li>
+                          </ul>
+                          
+                          <h3>✅ Why Use Functions?</h3>
+                          <ul>
+                              <li>⭐ <strong>Reusability:</strong> We can call the function many times instead of writing the same code again.</li>
+                              <li>⭐ <strong>Better Readability:</strong> Code looks cleaner and is easier to understand.</li>
+                              <li>⭐ <strong>Easier to Fix Errors:</strong> If something goes wrong, we only need to change the function instead of the entire program.</li>
+                          </ul>
+                          
+                          <h3>🚀 Example: Calling the Function Multiple Times</h3>
+                          <pre><code>#include &lt;iostream&gt;
+                          using namespace std;
+                          
+                          string greet(string name) {
+                              return "Hello, " + name;
+                          }
+                          
+                          int main() {
+                              cout << greet("Alice") << endl;
+                              cout << greet("Bob") << endl;
+                              cout << greet("Charlie") << endl;
+                              return 0;
+                          }
+                          </code></pre>
+                          
+                          <p><strong>Output:</strong></p>
+                          <pre><code>Hello, Alice
+                          Hello, Bob
+                          Hello, Charlie</code></pre>
+                          
+                          <p>This shows how functions help us avoid repeating code! 🎯</p>
+
+                          <!-- Arrays and Pointers -->
+                          <h2 id="arrays-pointers">Arrays and Pointers in C++</h2>
+
+                          <p>In C++, <strong>arrays</strong> and <strong>pointers</strong> are closely related. Arrays store multiple elements in a contiguous memory block, while pointers allow direct memory access and manipulation.</p>
+                          
+                          <h3>🔹 What are Arrays?</h3>
+                          <ul>
+                              <li><strong>Array</strong> → A collection of elements of the same type stored in memory.</li>
+                              <li>Arrays use <strong>zero-based indexing</strong>, meaning the first element is at index <code>0</code>.</li>
+                          </ul>
+                          
+                          <h3>📌 Example Code:</h3>
+                          <pre><code>#include &lt;iostream&gt;
+                          using namespace std;
+                          
+                          int main() {
+                              int numbers[5] = {10, 20, 30, 40, 50};
+                          
+                              cout << "First element: " << numbers[0] << endl;
+                              cout << "Second element: " << numbers[1] << endl;
+                          
+                              return 0;
+                          }
+                          </code></pre>
+                          
+                          <h3>🔹 What are Pointers?</h3>
+                          <ul>
+                              <li><strong>Pointer</strong> → A variable that stores the memory address of another variable.</li>
+                              <li>Pointers allow efficient memory manipulation and dynamic allocation.</li>
+                          </ul>
+                          
+                          <h3>📌 Example Code:</h3>
+                          <pre><code>#include &lt;iostream&gt;
+                          using namespace std;
+                          
+                          int main() {
+                              int num = 10;
+                              int* ptr = &num; // Pointer stores address of num
+                          
+                              cout << "Value of num: " << num << endl;
+                              cout << "Address of num: " << &num << endl;
+                              cout << "Pointer holds address: " << ptr << endl;
+                              cout << "Value at pointer: " << *ptr << endl; // Dereferencing
+                          
+                              return 0;
+                          }
+                          </code></pre>
+                          
+                          <h3>🔹 Relationship Between Arrays and Pointers</h3>
+                          <ul>
+                              <li>In C++, an <strong>array name</strong> acts as a pointer to the first element.</li>
+                              <li>Using pointer arithmetic, we can traverse the array efficiently.</li>
+                          </ul>
+                          
+                          <h3>📌 Example Code:</h3>
+                          <pre><code>#include &lt;iostream&gt;
+                          using namespace std;
+                          
+                          int main() {
+                              int arr[3] = {10, 20, 30};
+                              int* ptr = arr; // Points to first element
+                          
+                              cout << "First element: " << *ptr << endl;
+                              cout << "Second element: " << *(ptr + 1) << endl;
+                          
+                              return 0;
+                          }
+                          </code></pre>
+                          
+                          <h3>✅ Benefits of Using Pointers with Arrays</h3>
+                          <ul>
+                              <li><strong>Efficiency</strong> → Direct memory access speeds up operations.</li>
+                              <li><strong>Flexibility</strong> → Enables dynamic memory allocation.</li>
+                              <li><strong>Optimized Code</strong> → Reduces redundancy in accessing elements.</li>
+                          </ul>
+                          
+                          <h3>🚀 Dynamic Memory Allocation</h3>
+                          <p>We can use pointers to create arrays dynamically at runtime using <code>new</code>.</p>
+                          
+                          <h3>📌 Example Code:</h3>
+                          <pre><code>#include &lt;iostream&gt;
+                          using namespace std;
+                          
+                          int main() {
+                              int* arr = new int[3]; // Dynamic array allocation
+                          
+                              arr[0] = 10;
+                              arr[1] = 20;
+                              arr[2] = 30;
+                          
+                              cout << "Dynamic Array: " << arr[0] << ", " << arr[1] << ", " << arr[2] << endl;
+                          
+                              delete[] arr; // Free allocated memory
+                          
+                              return 0;
+                          }
+                          </code></pre>
+                          
+                          <p>Understanding arrays and pointers in C++ helps in optimizing memory usage and writing efficient programs!</p>
+                          <!-- Structures and Classes -->
+                          <h2 id="structures-classes">Structures and Classes in C++</h2>
+
+<p>In C++, both <strong>structures</strong> (<code>struct</code>) and <strong>classes</strong> (<code>class</code>) are used to group related variables and functions. The main difference is that <code>struct</code> members are public by default, while <code>class</code> members are private by default.</p>
+
+<h3>🔹 What is a Structure?</h3>
+<ul>
+    <li>A <strong>structure</strong> (<code>struct</code>) is a user-defined data type that groups different variables.</li>
+    <li>By default, all members of a <code>struct</code> are <strong>public</strong>.</li>
+</ul>
+
+<h3>📌 Example Code:</h3>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+struct Person {
+    string name;
+    int age;
+};
+
+int main() {
+    Person p1 = {"Alice", 25};
+
+    cout << "Name: " << p1.name << endl;
+    cout << "Age: " << p1.age << endl;
+
+    return 0;
+}
+</code></pre>
+
+<h3>🔹 What is a Class?</h3>
+<ul>
+    <li>A <strong>class</strong> is an advanced version of a structure with <strong>private</strong> members by default.</li>
+    <li>It can have both <strong>data members</strong> (variables) and <strong>member functions</strong> (methods).</li>
+</ul>
+
+<h3>📌 Example Code:</h3>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Person {
+private:
+    string name;
+    int age;
+
+public:
+    void setData(string n, int a) {
+        name = n;
+        age = a;
+    }
+
+    void display() {
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
+    }
+};
+
+int main() {
+    Person p1;
+    p1.setData("Bob", 30);
+    p1.display();
+
+    return 0;
+}
+</code></pre>
+
+<h3>🔹 Differences Between Structures and Classes</h3>
+<table border="1">
+    <tr>
+        <th>Feature</th>
+        <th>Structure (<code>struct</code>)</th>
+        <th>Class (<code>class</code>)</th>
+    </tr>
+    <tr>
+        <td>Default Access Modifier</td>
+        <td>Public</td>
+        <td>Private</td>
+    </tr>
+    <tr>
+        <td>Encapsulation</td>
+        <td>Limited</td>
+        <td>Full (Data Hiding)</td>
+    </tr>
+    <tr>
+        <td>Usage</td>
+        <td>Simple Data Grouping</td>
+        <td>Object-Oriented Programming (OOP)</td>
+    </tr>
+</table>
+
+<h3>✅ Why Use Classes?</h3>
+<ul>
+    <li><strong>Encapsulation</strong> → Keeps data secure by using private members.</li>
+    <li><strong>Reusability</strong> → We can create multiple objects from a single class.</li>
+    <li><strong>Scalability</strong> → Classes support inheritance and polymorphism.</li>
+</ul>
+
+<h3>🚀 Creating Multiple Objects</h3>
+<p>We can create multiple objects using a class, just like with a structure.</p>
+
+<h3>📌 Example Code:</h3>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Person {
+private:
+    string name;
+    int age;
+
+public:
+    void setData(string n, int a) {
+        name = n;
+        age = a;
+    }
+
+    void display() {
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
+    }
+};
+
+int main() {
+    Person p1, p2;
+    p1.setData("Alice", 22);
+    p2.setData("Charlie", 28);
+
+    p1.display();  // Output: Name: Alice, Age: 22
+    p2.display();  // Output: Name: Charlie, Age: 28
+
+    return 0;
+}
+</code></pre>
+
+<p>Both <strong>structures</strong> and <strong>classes</strong> are powerful tools in C++. Structures are useful for simple data grouping, while classes provide full object-oriented capabilities.</p>
+
+                                           
+                                          <!-- oops -->
+                                          <h2 id="oop">Object-Oriented Programming (OOP) in C++</h2>
+
+                                          <p>Object-Oriented Programming (OOP) is a way to organize code by creating objects. An <strong>object</strong> is like a real-world item, such as a car or a person. These objects have <strong>attributes</strong> (characteristics) and <strong>methods</strong> (actions).</p>
+                                          
+                                          <h3>🔹 What are Classes and Objects?</h3>
+                                          <ul>
+                                              <li><strong>Class</strong> → A template used to create objects.</li>
+                                              <li><strong>Object</strong> → A specific example created from a class.</li>
+                                          </ul>
+                                          
+                                          <h3>📌 Example Code:</h3>
+                                          <pre><code>#include &lt;iostream&gt;
+                                          using namespace std;
+                                          
+                                          class Person {
+                                          public:
+                                              string name;
+                                              int age;
+                                          
+                                              // Constructor
+                                              Person(string n, int a) {
+                                                  name = n;
+                                                  age = a;
+                                              }
+                                          
+                                              // Method
+                                              void greet() {
+                                                  cout << "Hello, my name is " << name << endl;
+                                              }
+                                          };
+                                          
+                                          int main() {
+                                              Person p("Shifa", 20);
+                                              p.greet();
+                                              return 0;
+                                          }
+                                          </code></pre>
+                                          
+                                          <h3>🔹 Explanation:</h3>
+                                          <ul>
+                                              <li><code>class Person</code> creates a blueprint for a person.</li>
+                                              <li>The <strong>constructor</strong> <code>Person(string n, int a)</code> initializes the object’s attributes.</li>
+                                              <li><code>name</code> and <code>age</code> store the person’s name and age.</li>
+                                              <li>The <code>greet()</code> method prints a message with the person’s name.</li>
+                                              <li><code>Person p("Shifa", 20)</code> creates a person named Shifa, who is 20 years old.</li>
+                                              <li><code>p.greet()</code> calls the function and prints <strong>"Hello, my name is Shifa"</strong>.</li>
+                                          </ul>
+                                          
+                                          <h3>✅ Why Use OOP?</h3>
+                                          <ul>
+                                              <li><strong>Easy to Understand</strong> → Code is organized into objects, like real-world things.</li>
+                                              <li><strong>Reusable</strong> → You can create multiple objects from the same class.</li>
+                                              <li><strong>Less Repetition</strong> → Functions inside classes make code shorter.</li>
+                                          </ul>
+                                          
+                                          <h3>🚀 Creating Multiple Objects</h3>
+                                          <pre><code>#include &lt;iostream&gt;
+                                          using namespace std;
+                                          
+                                          class Person {
+                                          public:
+                                              string name;
+                                              int age;
+                                          
+                                              Person(string n, int a) {
+                                                  name = n;
+                                                  age = a;
+                                              }
+                                          
+                                              void greet() {
+                                                  cout << "Hello, my name is " << name << endl;
+                                              }
+                                          };
+                                          
+                                          int main() {
+                                              Person p1("Alice", 25);
+                                              Person p2("Bob", 30);
+                                          
+                                              p1.greet();  // Output: Hello, my name is Alice
+                                              p2.greet();  // Output: Hello, my name is Bob
+                                          
+                                              return 0;
+                                          }
+                                          </code></pre>
+                                          
+                                          <p>OOP is widely used in programming, from making apps to building software systems. Learning OOP makes C++ more powerful and efficient!</p>
+                                          
+             
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>C++ is a powerful and efficient programming language used in system development, game programming, and software engineering. By mastering the basics, you can move on to advanced topics like data structures, algorithms, and competitive programming.</p>
+
+<p><strong>Start coding today and build amazing projects! 🚀</strong></p>
+</main>
+            <!-- Side Navigation -->
+            <aside class="side-nav">
+                <h2><i class="fas fa-list-alt"></i> Article Topics</h2>
+                <a href="#introduction"><i class="fas fa-book"></i> Introduction to C++</a>
+                <a href="#why-learn-cpp"><i class="fas fa-book"></i> Why Learn C++?</a>
+                <a href="#installing-cpp"><i class="fas fa-book"></i> Installing C++</a>
+                <a href="#cpp-basics"><i class="fas fa-book"></i> C++ Basics</a>
+                <a href="#hello-world"><i class="fas fa-book"></i> Hello World Program</a>
+                <a href="#variables-data-types"><i class="fas fa-book"></i> Variables and Data Types</a>
+                <a href="#input-output"><i class="fas fa-book"></i> Input and Output</a>
+                <a href="# Operators"><i class="fas fa-book"></i> Operators</a>
+                <a href="#Constructor Distrutor"><i class="fas fa-book"></i> Constructor & Distrutor</a>
+                <a href="#control-statements"><i class="fas fa-book"></i> Control Statements</a>
+                <a href="#if-else"><i class="fas fa-book"></i> If-Else</a>
+                <a href="#loops"><i class="fas fa-book"></i> Loops</a>
+                <a href="#for-loop"><i class="fas fa-book"></i> For Loop</a>
+                <a href="#while-loop"><i class="fas fa-book"></i> While Loop</a>
+                <a href="#functions"><i class="fas fa-book"></i> Functions</a>
+                <a href="#arrays-pointers"><i class="fas fa-book"></i> Arrays and Pointers</a>
+                <!-- <a href="#pointers"><i class="fas fa-book"></i> Pointers</a> -->
+                <a href="#structures-classes"><i class="fas fa-book"></i> Structures and Classes</a>
+                <a href="#oop"><i class="fas fa-book"></i> Object-Oriented Programming (OOP)</a>
+                <a href="#conclusion"><i class="fas fa-book"></i> Conclusion</a>
+            </aside>
+            
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h3>Thanks for visiting Ai CodeLab!</h3>
+            <p>© 2025 Ai CodeLab - Empowering coders for the future</p>
+        </div>
+    </footer>
+
+    <!-- pythons for mobile menu toggle -->
+    <script>
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get elements
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            // Toggle menu visibility when clicking the menu button
+            menuToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

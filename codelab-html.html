@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Basics - AI Code Lab</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-bg: #f5f5f5;
+            --code-bg: #f0f0f0;
+            --border-radius: 8px;
+            --box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        
+        /* Sidebar styles */
+        .sidebar {
+            width: 280px;
+            background: #2c3e50;
+            padding: 20px;
+            color: white;
+            overflow-y: auto;
+            position: fixed;
+            height: 100vh;
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #3d5566;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+        }
+        
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            padding: 8px 10px;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+        }
+        
+        .sidebar ul li a:hover {
+            background: #34495e;
+            transform: translateX(5px);
+        }
+        
+        /* Main content styles */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            margin-left: 280px;
+            max-width: 1200px;
+        }
+        
+        header {
+            margin-bottom: 30px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        section {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin: 20px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .code-block {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 3px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        .example {
+            background: #eafaf1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border: 1px solid #d5f5e3;
+        }
+        
+        .result {
+            background: #ebf5fb;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0 20px;
+            border: 1px solid #d4e6f1;
+        }
+        
+        .tip {
+            background: #fef9e7;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #f1c40f;
+        }
+        
+        .mobile-menu {
+            display: none;
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        
+        /* Responsive design */
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+                z-index: 1000;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .mobile-menu {
+                display: block;
+                position: fixed;
+                width: 100%;
+                top: 0;
+                z-index: 999;
+            }
+            
+            body {
+                padding-top: 50px;
+            }
+        }
+        
+        /* Button styles */
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+       
+    </style>
+</head>
+<body>
+    
+    <!-- Mobile Menu Button -->
+    <div class="mobile-menu">
+        <span>☰ Menu</span>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>AI Code Lab</h2>
+        <ul>
+            <li><a href="#intro">Introduction to HTML</a></li>
+            <li><a href="#structure">HTML Document Structure</a></li>
+            <li><a href="#elements">Basic HTML Elements</a></li>
+            <li><a href="#headings">Headings and Paragraphs</a></li>
+            <li><a href="#formatting">Text Formatting</a></li>
+            <li><a href="#links">Links and Anchors</a></li>
+            <li><a href="#images">Adding Images</a></li>
+            <li><a href="#lists">Lists</a></li>
+            <li><a href="#tables">Tables</a></li>
+            <li><a href="#forms">Basic Forms</a></li>
+            <li><a href="#divs">Divs and Spans</a></li>
+            <li><a href="#semantics">Semantic Elements</a></li>
+            <li><a href="#css-intro">Introduction to CSS</a></li>
+            <li><a href="#projects">Simple Projects</a></li>
+            <li><a href="#resources">Additional Resources</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h1>HTML Basics for Beginners</h1>
+            <p>Welcome to AI Code Lab's HTML basics guide! This comprehensive tutorial will help you learn HTML from scratch with simple, easy-to-follow examples.</p>
+        </header>
+
+        <section id="intro">
+            <h2>Introduction to HTML</h2>
+            <p>HTML stands for <strong>Hypertext Markup Language</strong>. It's the standard language used to create web pages and applications. HTML is not a programming language; it's a markup language that tells web browsers how to structure the content on your page.</p>
+            
+            <div class="tip">
+                <strong>What you'll learn:</strong> By the end of this guide, you'll be able to create your own web pages with properly structured content, images, links, tables, and forms.
+            </div>
+            
+            <h3>Why Learn HTML?</h3>
+            <p>HTML is the foundation of all web pages. Without HTML, you wouldn't be able to organize text or add images or videos to your web pages. HTML is the beginning of everything you need to know to create engaging web pages!</p>
+        </section>
+
+        <section id="structure">
+            <h2>HTML Document Structure</h2>
+            <p>Every HTML document follows a basic structure. Let's look at the simplest HTML page:</p>
+            
+            <div class="code-block">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;My First Web Page&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Hello, World!&lt;/h1&gt;
+        &lt;p&gt;This is my first web page.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+            </div>
+            
+            <h3>Understanding the Structure:</h3>
+            <ul>
+                <li><code>&lt;!DOCTYPE html&gt;</code> - Declares the document type and HTML version</li>
+                <li><code>&lt;html&gt;</code> - The root element that wraps all content on the page</li>
+                <li><code>&lt;head&gt;</code> - Contains meta-information about the document</li>
+                <li><code>&lt;title&gt;</code> - Sets the title that appears in the browser tab</li>
+                <li><code>&lt;body&gt;</code> - Contains all the content that users see on the page</li>
+            </ul>
+            
+            <div class="example">
+                <h4>Example: Create a simple HTML page</h4>
+                <p>Try creating a file named <code>index.html</code> with the above structure and open it in your browser!</p>
+            </div>
+        </section>
+
+        <section id="elements">
+            <h2>Basic HTML Elements</h2>
+            <p>HTML uses "elements" to structure content. Elements are defined by tags, which are keywords surrounded by angle brackets like <code>&lt;tagname&gt;</code>.</p>
+            
+            <h3>HTML Tags:</h3>
+            <p>Most HTML elements have an opening tag and a closing tag:</p>
+            <div class="code-block">
+&lt;tagname&gt;Content goes here...&lt;/tagname&gt;
+            </div>
+            
+            <h3>Self-closing Tags:</h3>
+            <p>Some elements don't need a closing tag because they don't contain any content:</p>
+            <div class="code-block">
+&lt;br&gt;
+&lt;img src="image.jpg"&gt;
+            </div>
+            
+            <div class="tip">
+                <strong>HTML5 syntax:</strong> In HTML5, you can write self-closing tags as <code>&lt;img src="image.jpg" /&gt;</code> but the trailing slash is optional.
+            </div>
+        </section>
+
+        <section id="headings">
+            <h2>Headings and Paragraphs</h2>
+            <p>Headings and paragraphs are the most basic elements for organizing text content.</p>
+            
+            <h3>Headings:</h3>
+            <p>HTML provides six levels of headings, from <code>&lt;h1&gt;</code> (the most important) to <code>&lt;h6&gt;</code> (the least important).</p>
+            
+            <div class="code-block">
+&lt;h1&gt;This is a Main Heading&lt;/h1&gt;
+&lt;h2&gt;This is a Level 2 Heading&lt;/h2&gt;
+&lt;h3&gt;This is a Level 3 Heading&lt;/h3&gt;
+&lt;h4&gt;This is a Level 4 Heading&lt;/h4&gt;
+&lt;h5&gt;This is a Level 5 Heading&lt;/h5&gt;
+&lt;h6&gt;This is a Level 6 Heading&lt;/h6&gt;
+            </div>
+            
+            <div class="result">
+                <h1 style="margin-top:0;">This is a Main Heading</h1>
+                <h2>This is a Level 2 Heading</h2>
+                <h3>This is a Level 3 Heading</h3>
+                <h4>This is a Level 4 Heading</h4>
+                <h5>This is a Level 5 Heading</h5>
+                <h6>This is a Level 6 Heading</h6>
+            </div>
+            
+            <h3>Paragraphs:</h3>
+            <p>The <code>&lt;p&gt;</code> tag defines a paragraph of text.</p>
+            
+            <div class="code-block">
+&lt;p&gt;This is a paragraph. It can contain a lot of text and will automatically wrap based on the width of its container.&lt;/p&gt;
+&lt;p&gt;This is another paragraph. Notice how HTML automatically adds space between paragraphs.&lt;/p&gt;
+            </div>
+            
+            <div class="result">
+                <p>This is a paragraph. It can contain a lot of text and will automatically wrap based on the width of its container.</p>
+                <p>This is another paragraph. Notice how HTML automatically adds space between paragraphs.</p>
+            </div>
+            
+            <div class="example">
+                <h4>Example: Create a simple blog post</h4>
+                <p>Try creating a simple blog post with a main heading, subheading, and several paragraphs.</p>
+            </div>
+        </section>
+
+        <section id="formatting">
+            <h2>Text Formatting</h2>
+            <p>HTML provides several elements to format text and give it special meaning.</p>
+            
+            <div class="code-block">
+&lt;p&gt;&lt;strong&gt;Bold text&lt;/strong&gt; is used for important content.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Italic text&lt;/em&gt; is used for emphasized content.&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;Highlighted text&lt;/mark&gt; draws attention to specific parts.&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Smaller text&lt;/small&gt; is used for fine print.&lt;/p&gt;
+&lt;p&gt;This text contains &lt;sub&gt;subscript&lt;/sub&gt; and &lt;sup&gt;superscript&lt;/sup&gt;.&lt;/p&gt;
+            </div>
+            
+            <div class="result">
+                <p><strong>Bold text</strong> is used for important content.</p>
+                <p><em>Italic text</em> is used for emphasized content.</p>
+                <p><mark>Highlighted text</mark> draws attention to specific parts.</p>
+                <div class="result">
+                    <p><strong>Bold text</strong> is used for important content.</p>
+                    <p><em>Italic text</em> is used for emphasized content.</p>
+                    <p><mark>Highlighted text</mark> draws attention to specific parts.</p>
+                    <p><small>Smaller text</small> is used for fine print.</p>
+                    <p>This text contains <sub>subscript</sub> and <sup>superscript</sup>.</p>
+                </div>
+            </section>
+    
+            <section id="links">
+                <h2>Links and Anchors</h2>
+                <p>Links are created using the <code>&lt;a&gt;</code> tag:</p>
+                
+                <div class="code-block">
+    &lt;a href="https://www.example.com"&gt;Visit Example.com&lt;/a&gt;
+    &lt;a href="#top"&gt;Back to top&lt;/a&gt;
+    &lt;a href="mailto:example@email.com"&gt;Send email&lt;/a&gt;
+                </div>
+                
+                <div class="result">
+                    <p><a href="https://www.example.com">Visit Example.com</a></p>
+                    <p><a href="#top">Back to top</a></p>
+                    <p><a href="mailto:example@email.com">Send email</a></p>
+                </div>
+            </section>
+    
+            <section id="images">
+                <h2>Adding Images</h2>
+                <p>Images are added using the <code>&lt;img&gt;</code> tag:</p>
+                
+                <div class="code-block">
+    &lt;img src="image.jpg" alt="Description of image"&gt;
+                </div>
+            </section>
+    
+            <section id="lists">
+                <h2>Lists</h2>
+                <p>HTML supports ordered, unordered, and description lists:</p>
+                
+                <div class="code-block">
+    &lt;ul&gt;
+        &lt;li&gt;Unordered item 1&lt;/li&gt;
+        &lt;li&gt;Unordered item 2&lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;ol&gt;
+        &lt;li&gt;Ordered item 1&lt;/li&gt;
+        &lt;li&gt;Ordered item 2&lt;/li&gt;
+    &lt;/ol&gt;
+                </div>
+            </section>
+    
+<!-- Add these sections before the footer -->
+<section id="tables">
+    <h2>Tables</h2>
+    <p>HTML tables are used to display data in rows and columns:</p>
+    
+    <div class="code-block">
+&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Header 1&lt;/th&gt;
+            &lt;th&gt;Header 2&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Data 1&lt;/td&gt;
+            &lt;td&gt;Data 2&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+    </div>
+</section>
+
+<section id="forms">
+    <h2>Basic Forms</h2>
+    <p>HTML forms are used to collect user input:</p>
+    
+    <div class="code-block">
+&lt;form action="/submit" method="post"&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name"&gt;
+    
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email"&gt;
+    
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+    </div>
+</section>
+
+<section id="divs">
+    <h2>Divs and Spans</h2>
+    <p>Container elements for grouping and styling content:</p>
+    
+    <div class="code-block">
+&lt;div class="container"&gt;
+    &lt;p&gt;This is a block-level &lt;span class="highlight"&gt;container&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+    </div>
+</section>
+
+<section id="semantics">
+    <h2>Semantic Elements</h2>
+    <p>HTML5 semantic elements provide meaning to the structure:</p>
+    
+    <div class="code-block">
+&lt;header&gt;Site header&lt;/header&gt;
+&lt;nav&gt;Navigation menu&lt;/nav&gt;
+&lt;main&gt;Main content&lt;/main&gt;
+&lt;article&gt;Article content&lt;/article&gt;
+&lt;aside&gt;Sidebar content&lt;/aside&gt;
+&lt;footer&gt;Site footer&lt;/footer&gt;
+    </div>
+</section>
+
+<section id="css-intro">
+    <h2>Introduction to CSS</h2>
+    <p>CSS (Cascading Style Sheets) is used to style HTML elements:</p>
+    
+    <div class="code-block">
+&lt;style&gt;
+    .container {
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 5px;
+    }
+&lt;/style&gt;
+    </div>
+</section>
+
+<section id="projects">
+    <h2>Simple Projects</h2>
+    <p>Practice your HTML skills with these projects:</p>
+    <ul>
+        <li>Personal Portfolio</li>
+        <li>Blog Layout</li>
+        <li>Contact Form</li>
+        <li>Product Landing Page</li>
+    </ul>
+</section>
+
+<section id="resources">
+    <h2>Additional Resources</h2>
+    <p>Further learning resources:</p>
+    <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">MDN Web Docs</a></li>
+        <li><a href="https://www.w3schools.com/html/">W3Schools HTML Tutorial</a></li>
+        <li><a href="https://validator.w3.org/">HTML Validator</a></li>
+    </ul>
+</section>
+
+            <footer>
+                <div class="tip">
+                    <strong>Practice!</strong> The best way to learn HTML is by practicing. Try creating different types of content using the elements you've learned.
+                </div>
+                <p>&copy; 2025 AI Code Lab. All rights reserved.</p>
+
+
+
+            </footer>
+        </div>
+    
+        <script>
+            // Mobile menu toggle
+            document.querySelector('.mobile-menu').addEventListener('click', function() {
+                document.querySelector('.sidebar').classList.toggle('active');
+            });
+    
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        </script>
+    </body>
+    </html>

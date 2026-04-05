@@ -1,0 +1,712 @@
+<style>
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python for Beginners</title>
+    <!-- Adding Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+    --primary-color: #6200ea;
+    --primary-light: #9d46ff;
+    --primary-dark: #0a00b6;
+    --secondary-color: #03dac6;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --text-light: #ffffff;
+    --background-light: #ffffff;
+    --background-dark: #f5f5f5;
+    --success-color: #4caf50;
+    --warning-color: #ff9800;
+    --error-color: #f44336;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+}
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            overflow-x: hidden;
+            font-family: 'Roboto', sans-serif;
+           color: var(--text-primary);
+            background-color: var(--background-light);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Page Title Banner */
+        .page-title {
+            background-color: #f89b24;
+            color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: #5382a1;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .main-nav a:hover {
+            background-color: #f89b24;
+            transform: translateY(-2px);
+        }
+
+        /* Content Layout */
+        .content-wrapper {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        main {
+            flex: 1 1 70%;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        main h1, main h2 {
+            color: #5382a1;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f89b24;
+            padding-bottom: 10px;
+        }
+
+        main p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        main ul, main ol {
+            margin: 20px 0 20px 40px;
+        }
+
+        main li {
+            margin-bottom: 10px;
+        }
+
+        /* Code Blocks */
+        pre {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        code {
+            font-family: 'Consolas', monospace;
+            display: block;
+        }
+
+        /* Side Navigation */
+        .side-nav {
+            flex: 1 1 30%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 90px;
+            max-height: calc(100vh - 120px); /* Adjust based on your header and footer height */
+            overflow-y: auto;
+        }
+
+        .side-nav h2 {
+            color: #5382a1;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f89b24;
+            padding-bottom: 10px;
+        }
+
+        .side-nav a {
+            display: flex;
+            align-items: center;
+            color: #333;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .side-nav a:hover {
+            background-color: #5382a1;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .side-nav a i {
+            margin-right: 10px;
+            color: #f89b24;
+        }
+
+        .side-nav a:hover i {
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #5382a1;
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 30px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .side-nav {
+                position: static;
+                width: 100%;
+                max-height: none;
+                overflow-y: visible;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .main-nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            .main-nav.active {
+                display: flex;
+            }
+            
+            .main-nav a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 24px;
+            }
+            
+            main {
+                padding: 15px;
+            }
+            
+            .page-title h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Title Banner -->
+    <div class="page-title">
+        <h2>Python for Beginners: A Complete Guide</h2>
+    </div>
+
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Ai CodeLab</div>
+                <!-- Mobile menu toggle button -->
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav class="main-nav" id="mainNav">
+                    <a target="_blank" href="codelab-html.html"><i class="fas fa-home"></i> HTML</a>
+                    <a target="_blank" href="codelab-css.html"><i class="fas fa-graduation-cap"></i> CSS</a>  
+                    <a target="_blank" href="codelab-javascript.html"><i class="fas fa-sign-in-alt"></i> JavaScript</a> 
+                    <a target="_blank" href="codelab-python.html"><i class="fas fa-book"></i> Python</a>
+                    <a target="_blank" href="codelab-java.html"><i class="fas fa-sign-in-alt"></i> Java</a> 
+                    <a target="_blank" href="codelab-cpp.html"><i class="fas fa-book"></i> C++</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="container">
+        <div class="content-wrapper">
+            <!-- Main Content -->
+            <main>
+                <h1 id="introduction">Introduction to Python</h1>
+                <p>Python is a high-level, interpreted programming language known for its simplicity and readability. Created by <strong>Guido van Rossum</strong> in 1991, Python is widely used in web development, data science, artificial intelligence, automation, and more.</p>
+                
+                <h2 id="why-learn-python">Why Learn Python?</h2>
+                <ul>
+                    <li><strong>Easy to Learn</strong> – Simple syntax similar to English.</li>
+                    <li><strong>Versatile</strong> – Can be used for web apps, data science, AI, etc.</li>
+                    <li><strong>Huge Community Support</strong> – Many resources and libraries.</li>
+                    <li><strong>Career Opportunities</strong> – High demand in various industries.</li>
+                    <li><strong>Cross-Platform</strong> – Runs on Windows, macOS, and Linux.</li>
+                </ul>
+                
+                <h2 id="installing-python">Installing Python</h2>
+                <ol>
+                    <li>Download Python from <a href="https://www.python.org/downloads/">python.org</a>.</li>
+                    <li>Install it and check by running:</li>
+                    <pre><code>python --version</code></pre>
+                    <li>Use <strong>IDLE</strong> or <strong>VS Code/PyCharm</strong> for writing Python programs.</li>
+                </ol>
+                
+                <h2 id="python-basics">Python Basics</h2>
+                <h3 id="hello-world">Hello World Program</h3>
+                <pre><code>print("Hello, World!")</code></pre>
+                
+                <!-- <strong id="variables-data-types">Variables and Data Types</strong > -->
+                <p><strong id="variables-data-types">Variables and Data Types in Python</strong></p>  
+                <p>In Python, a <strong>variable</strong> is like a container that stores data. You can assign a value to a variable using the <code>=</code> sign. For example, <code>name = "Alice"</code> stores the text "Alice" in the variable <code>name</code>. Python has different <strong>data types</strong> to handle various kinds of data:</p>  
+                <p><strong>Integer:</strong> Whole numbers e.g., <code>x = 10</code> </p>  
+                <p><strong>Float:</strong> Decimal numbers e.g., <code>price = 10.5</code></p>  
+                <p><strong>String:</strong> Text e.g., <code>name = "Alice"</code> </p>  
+                <p><strong>Boolean:</strong> True or False values e.g, <code>is_raining = False</code></p>  
+                <p>Python is <strong>dynamically typed</strong>, meaning you don’t need to specify the data type—it’s assigned automatically. You can check a variable’s type using the <code>type()</code> function, like <code>print(type(name))</code></p>
+                
+                <pre><code>name = "Shifa"
+age = 20
+is_student = True</code></pre>
+
+                
+                <h3 id="input-output">Input and Output</h3>
+                <pre><code>name = input("Enter your name: ")
+print("Hello,", name)</code></pre>
+    <h2 id="control-statements">Control Statements in Python</h2>
+
+<p>Control statements help us <strong>control the flow of a program</strong> based on conditions and loops. There are two main types:</p>
+<ul>
+    <li><strong>If-Else Statements</strong> – Used to make decisions</li>
+    <li><strong>Loops</strong> – Used to repeat a block of code</li>
+</ul>
+
+<h3 id="if-else">1️⃣ If-Else Statement</h3>
+<p>An <strong>if-else statement</strong> checks a condition and decides what to do based on whether the condition is <strong>True or False</strong>.</p>
+
+<pre><code>age = int(input("Enter your age: "))
+if age >= 18:
+    print("You are an adult.")
+else:
+    print("You are a minor.")</code></pre>
+
+<p><strong>How it works?</strong></p>
+<ul>
+    <li>The program asks the user to enter their age.</li>
+    <li>The <code>if</code> condition checks if the age is <strong>18 or more</strong>.</li>
+    <li>If <strong>True</strong>, it prints <em>"You are an adult."</em></li>
+    <li>If <strong>False</strong>, it prints <em>"You are a minor."</em></li>
+</ul>
+
+<p>💡 <strong>Use case:</strong> If-Else is useful when making <strong>decisions</strong>, like checking if a user is old enough to vote.</p>
+
+<hr>
+
+<h3 id="loops">2️⃣ Loops in Python</h3>
+<p>Loops are used to <strong>repeat</strong> a block of code multiple times. Python has two main loops:</p>
+
+<h4 id="for-loop">🔹 For Loop</h4>
+<p>A <strong>for loop</strong> is used when we know <strong>how many times</strong> we want to repeat something.</p>
+
+<pre><code>for i in range(5):
+    print(i)</code></pre>
+
+<p><strong>How it works?</strong></p>
+<ul>
+    <li><code>range(5)</code> generates numbers <strong>0 to 4</strong> (not including 5).</li>
+    <li>The loop runs 5 times, printing numbers <strong>0 to 4</strong> one by one.</li>
+</ul>
+
+<p>💡 <strong>Use case:</strong> Use a <strong>for loop</strong> when you want to repeat a task a set number of times, like printing numbers or looping through a list.</p>
+
+<hr>
+
+<h4 id="while-loop">🔹 While Loop</h4>
+<p>A <strong>while loop</strong> runs as long as a condition is <strong>True</strong>.</p>
+
+<pre><code>x = 0
+while x < 5:
+    print(x)
+    x += 1</code></pre>
+
+<p><strong>How it works?</strong></p>
+<ul>
+    <li>The loop starts with <code>x = 0</code></li>
+    <li>The condition <code>x &lt; 5</code> is checked before each loop run.</li>
+    <li>Inside the loop, <code>x</code> is printed, and then <strong>increased by 1</strong> <code>x += 1</code></li>
+    <li>The loop stops when <code>x</code> becomes <strong>5</strong></li>
+</ul>
+
+<p>💡 <strong>Use case:</strong> Use a <strong>while loop</strong> when you <strong>don't know how many times</strong> the loop should run, like waiting for user input.</p>
+
+<hr>
+
+<h2>Summary</h2>
+<ul>
+    <li>✅ <strong>If-Else</strong> → Makes decisions e.g., checking age.</li>
+    <li>✅ <strong>For Loop</strong> → Repeats a block a fixed number of times.</li>
+    <li>✅ <strong>While Loop</strong> → Repeats until a condition is false.</li>
+</ul>
+
+                          <!-- Functions -->
+                          <h2 id="functions">Functions in Pyton</h2>
+
+                          <p>A <strong>function</strong> in Python is a reusable block of code that performs a specific task. Instead of writing the same code again and again, we can use functions to make our programs shorter and easier to understand.</p>
+                          
+                          <h3>📌 Example Code:</h3>
+                          <pre><code>def greet(name):
+                              return "Hello, " + name
+                          
+                          print(greet("Shifa"))</code></pre>
+                          
+                          <h3>🔹 How This Code Works?</h3>
+                          <ul>
+                              <li>The keyword <code>def</code> is used to <strong>define a function</strong></li>
+                              <li>The function <code>greet(name)</code> takes one <strong>input (name)</strong></li>
+                              <li>Inside the function, it returns <strong>"Hello, " + name</strong> which means it adds the name to "Hello, "</li>
+                              <li>We call the function using <code>print(greet("Shifa"))</code></li>
+                              <li>This prints <strong>"Hello, Shifa"</strong> on the screen.</li>
+                          </ul>
+                          
+                          <h3>✅ Why Use Functions?</h3>
+                          <ul>
+                              <li>⭐ <strong>Reusability:</strong> We can call the function many times instead of writing the same code again.</li>
+                              <li>⭐ <strong>Better Readability:</strong> Code looks cleaner and is easier to understand.</li>
+                              <li>⭐ <strong>Easier to Fix Errors:</strong> If something goes wrong, we only need to change the function instead of the entire program.</li>
+                          </ul>
+                          
+                          <h3>🚀 Example: Calling the Function Multiple Times</h3>
+                          <pre><code>print(greet("Alice"))
+                          print(greet("Bob"))
+                          print(greet("Charlie"))</code></pre>
+                          
+                          <p><strong>Output:</strong></p>
+                          <pre><code>Hello, Alice
+                          Hello, Bob
+                          Hello, Charlie</code></pre>
+                          
+                          <p>This shows how functions help us avoid repeating code! 🎯</p>
+                                           <!-- list tuples and dictanries -->
+
+                                           <h2 id="lists-tuples">Lists and Tuples in Python</h2>
+
+<p>Python provides different ways to store multiple values in a single variable. Two common types are:</p>
+
+<ul>
+    <li><strong>Lists</strong> - A collection of items that can be changed (mutable).</li>
+    <li><strong>Tuples</strong> - A collection of items that cannot be changed (immutable).</li>
+</ul>
+
+<h3 id="list">🔹 Lists</h3>
+<p>A <strong>list</strong> is like a container that holds multiple values. You can add, remove, or change items in a list.</p>
+
+<pre><code>fruits = ["Apple", "Banana", "Cherry"]
+fruits.append("Mango")
+print(fruits)</code></pre>
+
+<p><strong>How it works?</strong></p>
+<ul>
+    <li><code>fruits</code> is a list containing <em>Apple, Banana, Cherry</em>.</li>
+    <li><code>append("Mango")</code> adds <em>Mango</em> to the list.</li>
+    <li>After running this code, the list becomes <code>["Apple", "Banana", "Cherry", "Mango"]</code>.</li>
+</ul>
+
+<h3 id="tuple">🔹 Tuples</h3>
+<p>A <strong>tuple</strong> is similar to a list, but you <strong>cannot change</strong> its values after creating it.</p>
+
+<pre><code>days = ("Monday", "Tuesday", "Wednesday")
+print(days[0])</code></pre>
+
+<p><strong>How it works?</strong></p>
+<ul>
+    <li><code>days</code> is a tuple containing <em>Monday, Tuesday, and Wednesday</em>.</li>
+    <li><code>print(days[0])</code> prints the first value, which is <strong>Monday</strong>.</li>
+    <li>Unlike lists, you cannot add or remove items from a tuple.</li>
+</ul>
+
+<hr>
+
+<h2 id="dictionaries">Dictionaries in Python</h2>
+
+<p>A <strong>dictionary</strong> stores data in <strong>key-value pairs</strong>. It is useful for organizing related information.</p>
+
+<pre><code>person = {"name": "Shifa", "age": 20}
+print(person["name"])  # Output: Shifa</code></pre>
+
+<p><strong>How it works?</strong></p>
+<ul>
+    <li><code>person</code> is a dictionary with two keys: <em>name</em> and <em>age</em>.</li>
+    <li><code>person["name"]</code> returns <strong>Shifa</strong>, which is stored under the <em>name</em> key.</li>
+    <li>Dictionaries allow storing different types of information in an organized way.</li>
+</ul>
+
+<h3>✅ Why Use These Data Types?</h3>
+<ul>
+    <li><strong>Lists</strong> → When you need a collection of items that can change.</li>
+    <li><strong>Tuples</strong> → When you need a collection that should stay the same.</li>
+    <li><strong>Dictionaries</strong> → When you need to store related data using key-value pairs.</li>
+</ul>
+
+<p>These are some of the most useful data types in Python for organizing data efficiently!</p>
+                                          <!-- oops -->
+<h2 id="oop">Object-Oriented Programming (OOP) in Python</h2>
+
+<p>Object-Oriented Programming (OOP) is a way to organize code by creating objects. An <strong>object</strong> is like a real-world item, such as a car or a person. These objects have <strong>attributes</strong> (characteristics) and <strong>methods</strong> (actions).</p>
+
+<h3>🔹 What are Classes and Objects?</h3>
+<ul>
+    <li><strong>Class</strong> → A template used to create objects.</li>
+    <li><strong>Object</strong> → A specific example created from a class.</li>
+</ul>
+
+<h3>📌 Example Code:</h3>
+<pre><code>class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def greet(self):
+        print("Hello, my name is " + self.name)
+
+p = Person("Shifa", 20)
+p.greet()</code></pre>
+
+<h3>🔹 Explanation:</h3>
+<ul>
+    <li><code>class Person</code> creates a blueprint for a person.</li>
+    <li><code>__init__</code> is a special function that runs when we create a new person.</li>
+    <li><code>self.name</code> and <code>self.age</code> store the person’s name and age.</li>
+    <li>The <code>greet()</code> function prints a message with the person’s name.</li>
+    <li><code>p = Person("Shifa", 20)</code> creates a person named Shifa, who is 20 years old.</li>
+    <li><code>p.greet()</code> calls the function and prints <strong>"Hello, my name is Shifa"</strong>.</li>
+</ul>
+
+<h3>✅ Why Use OOP?</h3>
+<ul>
+    <li><strong>Easy to Understand</strong> → Code is organized into objects, like real-world things.</li>
+    <li><strong>Reusable</strong> → You can create multiple objects from the same class.</li>
+    <li><strong>Less Repetition</strong> → Functions inside classes make code shorter.</li>
+</ul>
+
+<h3>🚀 Creating Multiple Objects</h3>
+<pre><code>p1 = Person("Alice", 25)
+p2 = Person("Bob", 30)
+
+p1.greet()  # Output: Hello, my name is Alice
+p2.greet()  # Output: Hello, my name is Bob</code></pre>
+
+<p>OOP is widely used in programming, from making apps to building websites. Learning OOP makes Python easier to use!</p>
+                <!-- handling -->
+                
+                <h2 id="conclusion">Conclusion</h2>
+                <p>Python is an excellent language for beginners due to its simplicity and flexibility. By mastering the basics, you can move on to advanced topics like web development, AI, and automation.</p>
+                
+                <p><strong>Start coding today!</strong></p> -->
+                <h2 id="file-handling">File Handling in Python</h2>
+
+<p>File handling allows us to <strong>read</strong> and <strong>write</strong> data to files. This is useful for saving and retrieving information.</p>
+
+<h3 id="reading-file">🔹 Reading a File</h3>
+<p>The following code reads the content of a file and prints it:</p>
+
+<pre><code>with open("file.txt", "r") as file:
+    print(file.read())</code></pre>
+
+<p><strong>Explanation:</strong></p>
+<ul>
+    <li><code>open("file.txt", "r")</code> opens the file in <strong>read mode</strong>.</li>
+    <li><code>file.read()</code> reads the file’s content.</li>
+    <li>The <code>with</code> statement ensures the file is closed automatically.</li>
+</ul>
+
+<h3 id="writing-file">🔹 Writing to a File</h3>
+<p>The following code writes text into a file:</p>
+
+<pre><code>with open("file.txt", "w") as file:
+    file.write("Hello, Python!")</code></pre>
+
+<p><strong>Explanation:</strong></p>
+<ul>
+    <li><code>open("file.txt", "w")</code> opens the file in <strong>write mode</strong>.</li>
+    <li><code>file.write("Hello, Python!")</code> writes text into the file.</li>
+    <li>If the file doesn’t exist, Python will create it.</li>
+</ul>
+
+<hr>
+
+<h2 id="exception-handling">Exception Handling in Python</h2>
+
+<p>Exceptions are errors that occur during program execution. Python allows us to <strong>handle</strong> these errors to prevent crashes.</p>
+
+<h3>📌 Example Code:</h3>
+<pre><code>try:
+    x = 10 / 0
+except ZeroDivisionError:
+    print("Cannot divide by zero!")</code></pre>
+
+<p><strong>Explanation:</strong></p>
+<ul>
+    <li>The <code>try</code> block contains code that might cause an error.</li>
+    <li>The <code>except</code> block catches the error and prevents the program from stopping.</li>
+    <li>Here, dividing by zero is not allowed, so the program prints <strong>"Cannot divide by zero!"</strong>.</li>
+</ul>
+
+<hr>
+
+<h2 id="libraries-frameworks">Python Libraries and Frameworks</h2>
+
+<p>Python has many <strong>libraries</strong> and <strong>frameworks</strong> that make programming easier:</p>
+
+<ul>
+    <li><strong>NumPy, Pandas</strong> – Used for data analysis.</li>
+    <li><strong>Django, Flask</strong> – Used for web development.</li>
+    <li><strong>TensorFlow, PyTorch</strong> – Used for machine learning.</li>
+    <li><strong>Matplotlib, Seaborn</strong> – Used for data visualization.</li>
+</ul>
+
+<hr>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Python is a beginner-friendly language because of its <strong>simplicity</strong> and <strong>flexibility</strong>. Once you master the basics, you can explore areas like web development, AI, and automation.</p>
+
+<p><strong>Start coding today and build amazing projects! 🚀</strong></p>
+
+            </main>
+
+            <!-- Side Navigation -->
+            <aside class="side-nav">
+                <h2><i class="fas fa-list-alt"></i> Article Topics</h2>
+                <a href="#introduction"><i class="fas fa-book"></i> Introduction to Python</a>
+                <a href="#why-learn-python"><i class="fas fa-book"></i> Why Learn Python?</a>
+                <a href="#installing-python"><i class="fas fa-book"></i> Installing Python</a>
+                <a href="#python-basics"><i class="fas fa-book"></i> Python Basics</a>
+                <a href="#hello-world"><i class="fas fa-book"></i> Hello World Program</a>
+                <a href="#variables-data-types"><i class="fas fa-book"></i> Variables and Data Types</a>
+                <a href="#input-output"><i class="fas fa-book"></i> Input and Output</a>
+                <a href="#control-statements"><i class="fas fa-book"></i> Control Statements</a>
+                <a href="#if-else"><i class="fas fa-book"></i> If-Else</a>
+                <a href="#loops"><i class="fas fa-book"></i> Loops</a>
+                <a href="#for-loop"><i class="fas fa-book"></i> For Loop</a>
+                <a href="#while-loop"><i class="fas fa-book"></i> While Loop</a>
+                <a href="#functions"><i class="fas fa-book"></i> Functions</a>
+                <a href="#lists-tuples"><i class="fas fa-book"></i> Lists and Tuples</a>
+                <a href="#list"><i class="fas fa-book"></i> List</a>
+                <a href="#tuple"><i class="fas fa-book"></i> Tuple</a>
+                <a href="#dictionaries"><i class="fas fa-book"></i> Dictionaries</a>
+                <a href="#oop"><i class="fas fa-book"></i> Object-Oriented Programming (OOP)</a>
+                <a href="#file-handling"><i class="fas fa-book"></i> File Handling</a>
+                <a href="#reading-file"><i class="fas fa-book"></i> Reading a File</a>
+                <a href="#writing-file"><i class="fas fa-book"></i> Writing to a File</a>
+                <a href="#exception-handling"><i class="fas fa-book"></i> Exception Handling</a>
+                <a href="#libraries-frameworks"><i class="fas fa-book"></i> Python Libraries and Frameworks</a>
+                <a href="#conclusion"><i class="fas fa-book"></i> Conclusion</a>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h3>Thanks for visiting Ai CodeLab!</h3>
+            <p>© 2025 Ai CodeLab - Empowering coders for the future</p>
+        </div>
+    </footer>
+
+    <!-- pythons for mobile menu toggle -->
+    <script>
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get elements
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            // Toggle menu visibility when clicking the menu button
+            menuToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

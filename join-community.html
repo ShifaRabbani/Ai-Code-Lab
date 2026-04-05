@@ -1,0 +1,334 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Code Lab - Social Code Sharing Platform</title>
+  <link rel="stylesheet" href="join-community.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <span class="logo-icon">⚡</span>
+                    AI Code Lab
+                </a>
+                
+                <div class="nav-links">
+                    <a href="#" class="active">Home</a>
+                    <a href="#">Explore</a>
+                    <a href="#">My Code</a>
+                    <a href="#">Notifications</a>
+                </div>
+                
+                <div class="nav-actions">
+                    <div class="search-bar">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" placeholder="Search for code, users...">
+                    </div>
+                    <button class="btn btn-outline">Login</button>
+                    <button class="btn btn-primary">Sign Up</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-content"> 
+            <!-- Left Sidebar -->    
+            <div class="sidebar">
+                <h3 class="sidebar-title">Navigation</h3>
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="#" class="active">
+                            <span class="menu-icon">🏠</span>
+                            Feed
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="menu-icon">🔍</span>
+                            Explore
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="menu-icon">📂</span>
+                            My Code
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="menu-icon">🔔</span>
+                            Notifications
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="menu-icon">💬</span>
+                            Messages
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="menu-icon">❤️</span>
+                            Saved
+                        </a>
+                    </li>
+                </ul>
+                
+                <h3 class="sidebar-title" style="margin-top: 2rem;">My Projects</h3>
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="#">
+                            <span class="menu-icon">🚀</span>
+                            Web App
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="menu-icon">🤖</span>
+                            ML Model
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="menu-icon">📱</span>
+                            Mobile App
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Main Feed -->
+            <div class="feed">
+                <!-- Post Composer -->
+                <div class="post-composer">
+                    <div class="composer-header">
+                        <div class="user-avatar">J</div>
+                        <h3>Share your code</h3>
+                    </div>
+                    
+                    <div class="composer-tabs">
+                        <div class="composer-tab active">
+                            <span>💻</span>
+                            Code
+                        </div>
+                        <div class="composer-tab">
+                            <span>📝</span>
+                            Question
+                        </div>
+                        <div class="composer-tab">
+                            <span>💡</span>
+                            Idea
+                        </div>
+                    </div>
+                    
+                    <div class="composer-content">
+                        <textarea placeholder="Write a description or paste your code here..."></textarea>
+                    </div>
+                    
+                    <div class="composer-footer">
+                        <div class="composer-options">
+                            <div class="privacy-selector">
+                                <span>🔒</span>
+                                <select>
+                                    <option>Public</option>
+                                    <option>Private</option>
+                                    <option>Friends Only</option>
+                                </select>
+                            </div>
+                            <button class="btn">
+                                <span>📎</span>
+                                Attach
+                            </button>
+                        </div>
+                        
+                        <button class="btn btn-primary">
+                            <span>✨</span>
+                            Post
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Code Post 1 -->
+                <div class="code-post">
+                    <div class="post-header">
+                        <div class="post-author">
+                            <div class="user-avatar">S</div>
+                            <div class="author-info">
+                                <h4>Sarah Developer</h4>
+                                <div class="post-meta">
+                                    <span>2 hours ago</span>
+                                    <span>•</span>
+                                    <div class="privacy-indicator">
+                                        <span>🌎</span>
+                                        <span>Public</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="post-actions">
+                            <button class="action-btn">⭐</button>
+                            <button class="action-btn">⋯</button>
+                        </div>
+                    </div>
+                    
+                    <div class="post-content">
+                        <div class="post-description">
+                            <p>Just created this simple yet effective dark mode toggle with JavaScript. What do you think?</p>
+                        </div>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <div class="language-indicator">
+                                    <span>📄</span>
+                                    <span>JavaScript</span>
+                                </div>
+                                <button class="action-btn">📋</button>
+                            </div>
+                            <div class="code-content">
+// Dark mode toggle functionality
+const toggleSwitch = document.querySelector('#darkmode-toggle');
+const currentTheme = localStorage.getItem('theme');
+
+if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    
+    if (currentTheme === 'dark') {
+        toggleSwitch.checked = true;
+    }
+}
+
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    }    
+}
+
+toggleSwitch.addEventListener('change', switchTheme);</div>
+                        </div>
+                    </div>
+                    
+                    <div class="post-footer">
+                        <div class="engagement">
+                            <div class="engagement-stats">
+                                <div class="stat">
+                                    <span>❤️</span>
+                                    <span>42 likes</span>
+                                </div>
+                                <div class="stat">
+                                    <span>💬</span>
+                                    <span>8 comments</span>
+                                </div>
+                                <div class="stat">
+                                    <span>🔄</span>
+                                    <span>5 forks</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="action-button">
+                                <span>❤️</span>
+                                <span>Like</span>
+                            </button>
+                            <button class="action-button">
+                                <span>💬</span>
+                                <span>Comment</span>
+                            </button>
+                            <button class="action-button">
+                                <span>🔄</span>
+                                <span>Fork</span>
+                            </button>
+                            <button class="action-button">
+                                <span>📤</span>
+                                <span>Share</span>
+                            </button>
+                        </div>
+                        
+                        <div class="comments-section">
+                            <div class="comment-composer">
+                                <div class="user-avatar">J</div>
+                                <textarea placeholder="Write a comment..."></textarea>
+                            </div>
+                            
+                            <div class="comment">
+                                <div class="user-avatar">M</div>
+                                <div class="comment-content">
+                                    <div class="comment-author">Mike Coder</div>
+                                    <p>Great implementation! I'd suggest adding a transition for smoother theme switching.</p>
+                                    <div class="comment-actions">
+                                        <span class="comment-action">Like</span>
+                                        <span class="comment-action">Reply</span>
+                                        <span>1 hour ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="comment">
+                                <div class="user-avatar">T</div>
+                                <div class="comment-content">
+                                    <div class="comment-author">Tech Enthusiast</div>
+                                    <p>Thanks for sharing! I've been looking for a clean way to implement this feature.</p>
+                                    <div class="comment-actions">
+                                        <span class="comment-action">Like</span>
+                                        <span class="comment-action">Reply</span>
+                                        <span>30 minutes ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Code Post 2 -->
+                <div class="code-post">
+                    <div class="post-header">
+                        <div class="post-author">
+                            <div class="user-avatar">A</div>
+                            <div class="author-info">
+                                <h4>AI Enthusiast</h4>
+                                <div class="post-meta">
+                                    <span>Yesterday</span>
+                                    <span>•</span>
+                                    <div class="privacy-indicator">
+                                        <span>👥</span>
+                                        <span>Friends Only</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="post-actions">
+                            <button class="action-btn">⭐</button>
+                            <button class="action-btn">⋯</button>
+                        </div>
+                    </div>
+                    
+                    <div class="post-content">
+                        <div class="post-description">
+                            <p>Built a simple Python function for image classification using TensorFlow. Would love some feedback on optimization!</p>
+                        </div>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <div class="language-indicator">
+                                    <span>🐍</span>
+                                    <span>Python</span>
+                                </div>
+                                <button class="action-btn">📋</button>
+                            </div>
+                            <div class="code-content">
+import tensorflow as tf
+from tensorflow.keras.preprocessing import image
+import numpy as np
+
+def classify_image(img_path, model_path):
+    """

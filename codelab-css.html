@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Basics for Beginners | AICode Lab</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Variables */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-bg: #f5f5f5;
+            --code-bg: #f0f0f0;
+            --border-radius: 8px;
+            --box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        h1, h2, h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        code {
+            background-color: var(--code-bg);
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .example-box {
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .example-code {
+            background-color: var(--code-bg);
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .example-result {
+            padding: 1rem;
+        }
+
+        .property-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        .property-table th,
+        .property-table td {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .property-table th {
+            background-color: var(--light-bg);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 2px 0;
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .content {
+            flex: 1 1 70%;
+            min-width: 300px;
+        }
+
+        /* .sidebar {
+            flex: 1 1 25%;
+            min-width: 250px;
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            align-self: flex-start;
+            position: sticky;
+            top: 2rem;
+        } */
+
+        /* // Add this in the <style> section, update the .sidebar CSS: */
+.sidebar {
+    flex: 1 1 25%;
+    min-width: 250px;
+    background-color: var(--light-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--light-bg);
+}
+
+/* Webkit scrollbar styling */
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: var(--light-bg);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Smooth scrolling for the whole document */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Update the topics-list links hover state */
+.topics-list a {
+    display: block;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+}
+
+.topics-list a:hover {
+    padding-left: 0.5rem;
+    background-color: rgba(52, 152, 219, 0.1);
+    border-radius: 4px;
+}
+
+/* Add active state for current section */
+.topics-list a.active {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+        .topics-list {
+            list-style: none;
+        }
+
+        .topics-list li {
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .topics-list li:last-child {
+            border-bottom: none;
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        /* Demo content styling */
+        .demo-box {
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-red {
+            color: red;
+        }
+
+        .text-blue {
+            color: blue;
+        }
+
+        .text-green {
+            color: green;
+        }
+
+        .bg-yellow {
+            background-color: #ffffcc;
+        }
+
+        .bg-blue {
+            background-color: #e6f2ff;
+        }
+
+        .bg-green {
+            background-color: #e6ffe6;
+        }
+
+        .border-demo {
+            border: 2px solid black;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .margin-demo {
+            margin: 20px;
+            border: 1px solid blue;
+            background-color: #e6f2ff;
+        }
+
+        .padding-demo {
+            padding: 20px;
+            border: 1px solid green;
+            background-color: #e6ffe6;
+        }
+
+        .float-left {
+            float: left;
+            margin-right: 15px;
+            width: 100px;
+            height: 100px;
+            background-color: #ffcccc;
+            border: 1px solid #ff6666;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .clear-both {
+            clear: both;
+        }
+
+        .flex-container {
+            display: flex;
+            background-color: #f0f0f0;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+        }
+
+        .flex-item {
+            padding: 10px;
+            margin: 5px;
+            background-color: #ddeeff;
+            border: 1px solid #99ccff;
+            flex: 1;
+            text-align: center;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+        }
+
+        .grid-item {
+            background-color: #ddffee;
+            border: 1px solid #99eebb;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background-color: var(--secondary-color);
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0.5rem 0;
+            }
+
+            main {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                position: static;
+                width: 100%;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">AICode Lab</a>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links" id="nav-links">
+                 <li>   <a target="_blank" href="codelab-html.html"><i class="fas fa-home"></i> HTML</a> </li>
+                 <li>   <a target="_blank" href="codelab-css.html"><i class="fas fa-graduation-cap"></i> CSS</a> </li>  
+                    <li>  <a target="_blank" href="codelab-javascript.html"><i class="fas fa-sign-in-alt"></i> JavaScript</a></li> 
+                    <li>  <a target="_blank" href="codelab-python.html"><i class="fas fa-book"></i> Python</a></li>
+                    <li>   <a target="_blank" href="codelab-java.html"><i class="fas fa-sign-in-alt"></i> Java</a> </li>
+                    <li>  <a target="_blank" href="codelab-cpp.html"><i class="fas fa-book"></i> C++</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+            <div class="content">
+                <h1>CSS Basics for Beginners</h1>
+                
+                <p>Welcome to AICode Lab's CSS tutorial for beginners! Cascading Style Sheets (CSS) is what makes the web beautiful. While HTML provides the structure of a webpage, CSS is responsible for how it looks.</p>
+                
+                <p>In this guide, we'll cover the fundamentals of CSS with simple examples that you can experiment with right away.</p>
+
+                <h2 id="what-is-css">What is CSS?</h2>
+                <p>CSS stands for Cascading Style Sheets. It's a language used to describe the presentation of HTML documents. With CSS, you can control the layout, colors, fonts, and much more.</p>
+
+                <h2 id="how-to-add-css">How to Add CSS to HTML</h2>
+                <p>There are three ways to add CSS to an HTML document:</p>
+
+                <h3>1. Inline CSS</h3>
+                <p>Using the <code>style</code> attribute directly in HTML elements:</p>
+                
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>&lt;p style="color: blue; font-size: 18px;"&gt;This is a blue paragraph with 18px font size.&lt;/p&gt;</pre>
+                    </div>
+                    <div class="example-result">
+                        <p style="color: blue; font-size: 18px;">This is a blue paragraph with 18px font size.</p>
+                    </div>
+                </div>
+
+                <h3>2. Internal CSS</h3>
+                <p>Using the <code>&lt;style&gt;</code> element in the <code>&lt;head&gt;</code> section of an HTML page:</p>
+                
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>&lt;head&gt;
+  &lt;style&gt;
+    p {
+      color: green;
+      font-size: 16px;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;This paragraph would be green with 16px font size.&lt;/p&gt;
+&lt;/body&gt;</pre>
+                    </div>
+                </div>
+
+                <h3>3. External CSS</h3>
+                <p>Creating a separate .css file and linking it using the <code>&lt;link&gt;</code> element:</p>
+                
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>&lt;head&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;</pre>
+                    </div>
+                </div>
+                
+                <p>This is the most recommended method for larger websites as it separates your HTML content from the CSS styling.</p>
+
+                <h2 id="css-syntax">CSS Syntax</h2>
+                <p>CSS syntax consists of a selector and a declaration block:</p>
+                
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>selector {
+  property: value;
+  another-property: another-value;
+}</pre>
+                    </div>
+                </div>
+
+                <ul>
+                    <li><strong>Selector:</strong> Points to the HTML element you want to style</li>
+                    <li><strong>Declaration Block:</strong> Contains one or more declarations separated by semicolons</li>
+                    <li><strong>Property:</strong> The style attribute you want to change</li>
+                    <li><strong>Value:</strong> The value for the property</li>
+                </ul>
+
+                <h2 id="css-selectors">CSS Selectors</h2>
+                <p>Selectors are patterns used to select and style HTML elements. Here are the most common ones:</p>
+
+                <h3>Element Selector</h3>
+                <p>Selects all elements with the specified tag name:</p>
+                
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>p {
+  color: red;
+}</pre>
+                    </div>
+                    <div class="example-result">
+                        <p class="text-red">This paragraph would be red.</p>
+                    </div>
+                </div>
+
+                <h3>Class Selector</h3>
+                <p>Selects all elements with the specified class attribute:</p>
+                
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>.highlight {
+  background-color: yellow;
+  font-weight: bold;
+}</pre>
+                    </div>
+                    <div class="example-result">
+                        <p class="bg-yellow" style="font-weight: bold;">This paragraph has the highlight class.</p>
+                    </div>
+                </div>
+
+                <h3>ID Selector</h3>
+                <p>Selects the element with the specified id attribute:</p>
+                
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>#header {
+  background-color: black;
+  color: white;
+}</pre>
+                    </div>
+                </div>
+
+                <h2 id="colors">CSS Colors</h2>
+                <p>CSS offers several ways to specify colors:</p>
+
+                <h3>Color Names</h3>
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>p {
+  color: red;
+}</pre>
+                    </div>
+                    <div class="example-result">
+                        <p class="text-red">This text is red.</p>
+                    </div>
+                </div>
+
+                <h3>RGB Values</h3>
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>p {
+  color: rgb(0, 0, 255);
+}</pre>
+                    </div>
+                    <div class="example-result">
+                        <p class="text-blue">This text is blue using RGB.</p>
+                    </div>
+                </div>
+
+                <h3>HEX Values</h3>
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>p {
+  color: #00FF00;
+}</pre>
+                    </div>
+                    <div class="example-result">
+                        <p class="text-green">This text is green using HEX.</p>
+                    </div>
+                </div>
+
+                <h2 id="text-styling">Text Styling</h2>
+                <p>CSS provides properties to style text:</p>
+
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>p {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: underline;
+  line-height: 1.5;
+}</pre>
+                    </div>
+                    <div class="example-result">
+                        <p style="font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; text-align: center; text-decoration: underline; line-height: 1.5;">This text has various styling properties applied.</p>
+                    </div>
+                </div>
+
+                <h2 id="box-model">CSS Box Model</h2>
+                <p>The CSS box model is a fundamental concept that describes how elements are sized, spaced, and positioned. It consists of:</p>
+                
+                <ul>
+                    <li><strong>Content:</strong> The actual content of the element</li>
+                    <li><strong>Padding:</strong> Space between the content and the border</li>
+                    <li><strong>Border:</strong> A border around the padding</li>
+                    <li><strong>Margin:</strong> Space outside the border</li>
+                </ul>
+
+                <h3>Border Example</h3>
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>div {
+  border: 2px solid black;
+  padding: 10px;
+  margin: 10px 0;
+}</pre>
+                    </div>
+                    <div class="example-result">
+                        <div class="border-demo">This div has a border, padding, and margin.</div>
+                    </div>
+                </div>
+
+                <h3>Margin Example</h3>
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>div {
+  margin: 20px;
+  border: 1px solid blue;
+  background-color: #e6f2ff;
+}</pre>
+                    </div>
+                    <div class="example-result">
+                        <div class="margin-demo">This div has a margin of 20px.</div>
+                    </div>
+                </div>
+
+                <h3>Padding Example</h3>
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>div {
+  padding: 20px;
+  border: 1px solid green;
+  background-color: #e6ffe6;
+}</pre>
+                    </div>
+                    <div class="example-result">
+                        <div class="padding-demo">This div has padding of 20px.</div>
+                    </div>
+                </div>
+
+                <h2 id="layout">CSS Layout</h2>
+                <p>CSS offers several techniques for controlling the layout of webpages:</p>
+
+                <h3>Float</h3>
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>.float-left {
+  float: left;
+  margin-right: 15px;
+  width: 100px;
+  height: 100px;
+  background-color: #ffcccc;
+}</pre>
+                    </div>
+                    <div class="example-result">
+                        <div class="float-left">Float</div>
+                        <p>This text will wrap around the floated element. This demonstrates how float works to position elements and how text flows around them.</p>
+                        <div class="clear-both"></div>
+                    </div>
+                </div>
+
+                <h3>Flexbox</h3>
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>.flex-container {
+  display: flex;
+}
+
+.flex-item {
+  flex: 1;
+}</pre>
+                    </div>
+                    <div class="example-result">
+                        <div class="flex-container">
+                            <div class="flex-item">Flex Item 1</div>
+                            <div class="flex-item">Flex Item 2</div>
+                            <div class="flex-item">Flex Item 3</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>CSS Grid</h3>
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}</pre>
+                    </div>
+                    <div class="example-result">
+                        <div class="grid-container">
+                            <div class="grid-item">Grid Item 1</div>
+                            <div class="grid-item">Grid Item 2</div>
+                            <div class="grid-item">Grid Item 3</div>
+                            <div class="grid-item">Grid Item 4</div>
+                            <div class="grid-item">Grid Item 5</div>
+                            <div class="grid-item">Grid Item 6</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="responsive">Responsive Design</h2>
+                <p>Responsive design ensures that your website looks good on all devices. Media queries are the foundation of responsive design:</p>
+
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>/* For mobile phones */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .container {
+    width: 100%;
+  }
+}</pre>
+                    </div>
+                </div>
+
+                <h2 id="transitions">CSS Transitions</h2>
+                <p>Transitions allow elements to change values smoothly:</p>
+
+                <div class="example-box">
+                    <div class="example-code">
+                        <pre>button {
+  background-color: blue;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: darkblue;
+}</pre>
+                    </div>
+                    <div class="example-result">
+                        <button style="background-color: blue; color: white; transition: background-color 0.3s ease; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Hover over me</button>
+                    </div>
+                </div>
+                
+                <h2 id="common-properties">Common CSS Properties</h2>
+                <p>Here's a table of commonly used CSS properties:</p>
+                
+                <table class="property-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>color</td>
+                            <td>Sets text color</td>
+                            <td><code>color: blue;</code></td>
+                        </tr>
+                        <tr>
+                            <td>background-color</td>
+                            <td>Sets background color</td>
+                            <td><code>background-color: #f0f0f0;</code></td>
+                        </tr>
+                        <tr>
+                            <td>font-family</td>
+                            <td>Sets font type</td>
+                            <td><code>font-family: Arial, sans-serif;</code></td>
+                        </tr>
+                        <tr>
+                            <td>font-size</td>
+                            <td>Sets font size</td>
+                            <td><code>font-size: 16px;</code></td>
+                        </tr>
+                        <tr>
+                            <td>margin</td>
+                            <td>Sets margin area</td>
+                            <td><code>margin: 10px 5px;</code></td>
+                        </tr>
+                        <tr>
+                            <td>padding</td>
+                            <td>Sets padding area</td>
+                            <td><code>padding: 10px;</code></td>
+                        </tr>
+                        <tr>
+                            <td>border</td>
+                            <td>Sets border</td>
+                            <td><code>border: 1px solid black;</code></td>
+                        </tr>
+                        <tr>
+                            <td>width</td>
+                            <td>Sets width</td>
+                            <td><code>width: 100px;</code></td>
+                        </tr>
+                        <tr>
+                            <td>height</td>
+                            <td>Sets height</td>
+                            <td><code>height: 200px;</code></td>
+                        </tr>
+                        <tr>
+                            <td>display</td>
+                            <td>Sets display type</td>
+                            <td><code>display: flex;</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <aside class="sidebar">
+                <h2>Artical Topics</h2>
+                <ul class="topics-list">
+                    <li><a href="#what-is-css">What is CSS?</a></li>
+                    <li><a href="#how-to-add-css">How to Add CSS</a></li>
+                    <li><a href="#css-syntax">CSS Syntax</a></li>
+                    <li><a href="#css-selectors">CSS Selectors</a></li>
+                    <li><a href="#colors">CSS Colors</a></li>
+                    <li><a href="#text-styling">Text Styling</a></li>
+                    <li><a href="#box-model">CSS Box Model</a></li>
+                    <li><a href="#layout">CSS Layout</a></li>
+                    <li><a href="#responsive">Responsive Design</a></li>
+                    <li><a href="#transitions">CSS Transitions</a></li>
+                    <li><a href="#common-properties">Common Properties</a></li>
+                </ul>
+
+                <h3 style="margin-top: 2rem;">Resources</h3>
+                <ul class="topics-list">
+                    <li><a href="#">CSS Cheat Sheet</a></li>
+                    <li><a href="#">Advanced CSS Tutorial</a></li>
+                    <li><a href="#">CSS Frameworks</a></li>
+                    <li><a href="#">Practice Exercises</a></li>
+                </ul>
+            </aside>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AICode Lab. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple mobile menu toggle
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.getElementById('nav-links').classList.toggle('active');
+        });
+        // Add this before </body>
+
+    // Highlight active section in sidebar
+    const sections = document.querySelectorAll('h2[id]');
+    const navLinks = document.querySelectorAll('.topics-list a');
+
+    function highlightActiveSection() {
+        let scrollPosition = window.scrollY;
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.clientHeight;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + sectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+
+    // Listen for scroll events
+    window.addEventListener('scroll', highlightActiveSection);
+
+    // Initial check for active section
+    highlightActiveSection();
+
+    </script>
+</body>
+</html>

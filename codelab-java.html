@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java for Beginners</title>
+    <!-- Adding Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+    --primary-color: #6200ea;
+    --primary-light: #9d46ff;
+    --primary-dark: #0a00b6;
+    --secondary-color: #03dac6;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --text-light: #ffffff;
+    --background-light: #ffffff;
+    --background-dark: #f5f5f5;
+    --success-color: #4caf50;
+    --warning-color: #ff9800;
+    --error-color: #f44336;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+}
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            overflow-x: hidden;
+            font-family: 'Roboto', sans-serif;
+           color: var(--text-primary);
+            background-color: var(--background-light);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Page Title Banner */
+        .page-title {
+            background-color: #f89b24;
+            color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: #5382a1;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .main-nav a:hover {
+            background-color: #f89b24;
+            transform: translateY(-2px);
+        }
+
+        /* Content Layout */
+        .content-wrapper {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        main {
+            flex: 1 1 70%;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        main h1, main h2 {
+            color: #5382a1;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f89b24;
+            padding-bottom: 10px;
+        }
+
+        main p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        main ul, main ol {
+            margin: 20px 0 20px 40px;
+        }
+
+        main li {
+            margin-bottom: 10px;
+        }
+
+        /* Code Blocks */
+        pre {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        code {
+            font-family: 'Consolas', monospace;
+            display: block;
+        }
+
+        /* Side Navigation */
+        .side-nav {
+            flex: 1 1 30%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 90px;
+            max-height: calc(100vh - 120px); /* Adjust based on your header and footer height */
+            overflow-y: auto;
+        }
+
+        .side-nav h2 {
+            color: #5382a1;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f89b24;
+            padding-bottom: 10px;
+        }
+
+        .side-nav a {
+            display: flex;
+            align-items: center;
+            color: #333;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .side-nav a:hover {
+            background-color: #5382a1;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .side-nav a i {
+            margin-right: 10px;
+            color: #f89b24;
+        }
+
+        .side-nav a:hover i {
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #5382a1;
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 30px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .side-nav {
+                position: static;
+                width: 100%;
+                max-height: none;
+                overflow-y: visible;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .main-nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            .main-nav.active {
+                display: flex;
+            }
+            
+            .main-nav a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 24px;
+            }
+            
+            main {
+                padding: 15px;
+            }
+            
+            .page-title h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Title Banner -->
+    <div class="page-title">
+        <h2>Java for Beginners: A Complete Guide</h2>
+    </div>
+
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Ai CodeLab</div>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav class="main-nav" id="mainNav">
+                    <a target="_blank" href="codelab-html.html"><i class="fas fa-home"></i> HTML</a>
+                    <a target="_blank" href="codelab-css.html"><i class="fas fa-graduation-cap"></i> CSS</a>  
+                    <a target="_blank" href="codelab-javascript.html"><i class="fas fa-sign-in-alt"></i> JavaScript</a> 
+                    <a target="_blank" href="codelab-python.html"><i class="fas fa-book"></i> Python</a>
+                    <a target="_blank" href="codelab-java.html"><i class="fas fa-sign-in-alt"></i> Java</a> 
+                    <a target="_blank" href="codelab-cpp.html"><i class="fas fa-book"></i> C++</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="container">
+        <div class="content-wrapper">
+            <!-- Main Content -->
+            <main>
+                <h1 id="introduction">Introduction to Java</h1>
+                <p id="intro">Java is a popular programming language known for its simplicity, portability, and security. It is widely used for building mobile apps, web applications, and enterprise software.</p>
+                <button onclick="changeIntro()">Change Introduction</button>
+                
+                <h2 id="basic-structure">Basic Structure of a Java Program</h2>
+                <p>A Java program consists of a class and a main method where execution starts.</p>
+                <pre><code id="codeSample">
+// A simple Java program that prints "Hello, World!"
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!"); // Prints message to console
+    }
+}
+                </code></pre>
+                <button onclick="changeCode()">Change Code Example</button>
+                
+                <h2 id="variables-datatypes">Java Variables and Data Types</h2>
+                <p>Variables store data, and Java has different types for different values:</p>
+                <pre><code>
+int number = 10;  // Stores whole numbers
+float pi = 3.14f; // Stores decimal numbers
+char letter = 'A'; // Stores a single character
+boolean isJavaFun = true; // Stores true or false values
+String text = "Java is awesome!"; // Stores text
+                </code></pre>
+                
+                <h2 id="operators">Java Operators</h2>
+                <p>Operators perform calculations or operations on values.</p>
+                <pre><code>
+int a = 10, b = 5;
+System.out.println(a + b); // Addition (10 + 5 = 15)
+System.out.println(a - b); // Subtraction (10 - 5 = 5)
+System.out.println(a * b); // Multiplication (10 * 5 = 50)
+System.out.println(a / b); // Division (10 / 5 = 2)
+System.out.println(a % b); // Modulus (remainder of 10/5 = 0)
+                </code></pre>
+                
+                <h2 id="control-statements">Control Statements</h2>
+                <p>Control statements decide the flow of execution in a program.</p>
+                <pre><code>
+int age = 18;
+if (age >= 18) { 
+    System.out.println("You are an adult.");
+} else {
+    System.out.println("You are a minor.");
+}
+                </code></pre>
+                
+                <h2 id="loops">Loops in Java</h2>
+                <p>Loops allow executing a block of code multiple times.</p>
+                <button onclick="showLoop()">Show For Loop Example</button>
+                <pre id="loopExample" style="display:none;"><code>
+for (int i = 1; i <= 5; i++) {
+    System.out.println("Iteration: " + i);
+}
+                </code></pre>
+                
+                <h2 id="functions">Functions (Methods) in Java</h2>
+                <p>Functions help reuse code and structure programs effectively.</p>
+                <pre><code>
+public class Example {
+    public static void greet() {
+        System.out.println("Hello, Welcome to Java!");
+    }
+    public static void main(String[] args) {
+        greet(); // Calling the function
+    }
+}
+                </code></pre>
+                
+                <h2 id="oop">Object-Oriented Programming (OOP) in Java</h2>
+                <p>Java follows OOP principles, organizing code into objects and classes.</p>
+                <h3>1. Classes and Objects</h3>
+                <pre><code>
+class Car {
+    String brand; 
+    public void showBrand() {
+        System.out.println("Car brand: " + brand);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Car myCar = new Car();
+        myCar.brand = "Toyota";
+        myCar.showBrand();
+    }
+}
+                </code></pre>
+                
+                <h3>2. Inheritance</h3>
+                <pre><code>
+class Animal {
+    void sound() {
+        System.out.println("Animals make sounds");
+    }
+}
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog barks");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Dog myDog = new Dog();
+        myDog.sound();
+        myDog.bark();
+    }
+}
+                </code></pre>
+                
+                <h2 id="exception-handling">Exception Handling in Java</h2>
+                <p>Exception handling prevents program crashes due to errors.</p>
+                <pre><code>
+try {
+    int result = 10 / 0; 
+} catch (ArithmeticException e) {
+    System.out.println("Cannot divide by zero!");
+}
+                </code></pre>
+                
+                <h2 id="getting-started">How to Start Coding in Java?</h2>
+                <ul>
+                    <li>Install JDK and an IDE (like IntelliJ IDEA or Eclipse).</li>
+                    <li>Write Java code in an IDE or a text editor.</li>
+                    <li>Save the file with a <code>.java</code> extension.</li>
+                    <li>Compile using <code>javac filename.java</code>.</li>
+                    <li>Run using <code>java filename</code>.</li>
+                </ul>
+                
+                <h2 id="conclusion">Conclusion</h2>
+                <p>Java is a powerful, beginner-friendly language with vast applications. By mastering the basics, you can build strong programming skills.</p>
+            </main>
+
+            <!-- Side Navigation -->
+            <aside class="side-nav">
+                <h2><i class="fas fa-list-alt"></i> Article Topics</h2>
+                <a href="#introduction"><i class="fas fa-book"></i> Introduction to Java</a>
+                <a href="#basic-structure"><i class="fas fa-book"></i> Basic Structure</a>
+                <a href="#variables-datatypes"><i class="fas fa-book"></i> Variables and Data Types</a>
+                <a href="#operators"><i class="fas fa-book"></i> Java Operators</a>
+                <a href="#control-statements"><i class="fas fa-book"></i> Control Statements</a>
+                <a href="#loops"><i class="fas fa-book"></i> Loops in Java</a>
+                <a href="#functions"><i class="fas fa-book"></i> Functions (Methods)</a>
+                <a href="#oop"><i class="fas fa-book"></i> Object-Oriented Programming (OOP)</a>
+                <a href="#exception-handling"><i class="fas fa-book"></i> Exception Handling</a>
+                <a href="#getting-started"><i class="fas fa-book"></i> Getting Started</a>
+                <a href="#conclusion"><i class="fas fa-book"></i> Conclusion</a>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h3>Thanks for visiting Ai CodeLab!</h3>
+            <p>© 2025 Ai CodeLab - Empowering coders for the future</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for mobile menu toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            menuToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+            });
+        });
+
+        function changeIntro() {
+            document.getElementById("intro").innerText = "Java is an object-oriented, platform-independent programming language used in various fields, from web development to AI.";
+        }
+        
+        function changeCode() {
+            document.getElementById("codeSample").innerText = "// Modified Java Code\npublic class Greetings {\n    public static void main(String[] args) {\n        System.out.println(\"Welcome to Java!\");\n    }\n}";
+        }
+        
+        function showLoop() {
+            document.getElementById("loopExample").style.display = "block";
+        }
+    </script>
+</body>
+</html>
