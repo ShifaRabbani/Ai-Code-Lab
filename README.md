@@ -131,7 +131,7 @@ cd ai-codelab
 
 ## 🌍 Deploy on Netlify
 
-1. Go to [netlify.com](https://netlify.com)
+1. Go to [netlify.com](aicodelabaicodelab.netlify.app)
 2. Click **Add new site** → **Deploy manually**
 3. Drag and drop your project folder
 4. Your site is live! 🎉
