@@ -7,7 +7,7 @@
 
 ## 🌐 Live Demo
 
-🔗 [Visit AI CodeLab](https://your-netlify-link.netlify.app)
+🔗 [Visit AI CodeLab](aicodelabaicodelab.netlify.app)
 
 ---
 
