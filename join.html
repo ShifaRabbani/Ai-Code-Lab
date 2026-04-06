@@ -3,85 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Code Lab Community</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-   <link rel="stylesheet" href="join.css">
+    <title>Ai CodeLab - Community</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Modern Styles -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1>Join the AI Code Lab Community</h1>
-        </div>
-    </header>
 
+    <!-- Custom Cursor -->
+    <div id="custom-cursor"></div>
+
+    <!-- Animated Mesh Gradient Background -->
+    <div class="mesh-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Modern Extreme Navbar -->
     <nav>
-        <div class="nav-container">
-            <div class="logo-container">
-                <i class="fas fa-robot"></i>
-                <h1>AI CodeLab</h1>
-            </div>
-<a href="login.html" target="_blank" class="join-button">Join Now</a>
+        <div class="logo-container">
+            <i class="fas fa-robot"></i>
+            <span>CodeLab<span style="color:var(--primary)">.ai</span></span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Platform</a>
+            <a href="courses.html">Syllabus</a>
+            <a href="study.html">Resources</a>
+            <a href="join.html" class="active">Community</a>
+        </div>
+        <div style="display:flex;gap:10px;">
+            <a href="login.html" class="magnetic-btn" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;"><span>Login</span></a>
         </div>
     </nav>
 
-    <section class="benefits">
-        <h2>Why Join?</h2>
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <h3>🤝Learn Together</h3>
-                <p>Learn faster by working together and sharing ideas with other people who love coding.</p>
-            </div>
-            <div class="benefit-card">
-                <h3>📝Get Feedback</h3>
-                <p>Get useful feedback on your projects from fellow learners and experienced developers.</p>
-            </div>
-            <div class="benefit-card">
-                <h3>🎨 Build Portfolio</h3>
-                <p>Showcase your creations and build a strong portfolio to support your future goals.</p>
-            </div>
-            <div class="benefit-card">
-                <h3> 🌟Stay Inspired</h3>
-                <p>Explore projects from others to spark new ideas and stay inspired on your coding journey.</p>
-            </div>
-            <div class="benefit-card">
-                <h3>❓ Ask Questions</h3>
-                <p>Don't get stuck—ask questions and get help from friendly community members anytime.</p>
-            </div>
-            <div class="benefit-card">
-                <h3>🚀Grow with Challenges</h3>
-                <p>Take part in fun coding challenges to test your skills and keep improving step by step.</p>
-            </div>
-        </div>
-    </section>
-    <section class="how-it-works">
-        <h2>How It Works ❓</h2>
-        <div class="steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <h3>Sign Up</h3>
-                    <p>Create your profile and get started</p>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <h3>Share Your Code</h3>
-                    <p>Post your projects or code snippets</p>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <h3>Connect</h3>
-                    <p>Get feedback and make friends in the community</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Page Title Header -->
+    <header style="margin-top: 120px; text-align: center; padding: 2rem;">
+        <h1 class="hover-target" style="font-size: clamp(2.5rem, 6vw, 4.5rem);"><span class="gradient-text">Neural Network</span> of Engineers</h1>
+    </header>
 
+    <main>
+        <section style="padding-top: 2rem;">
+            
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto; color: var(--text-muted);">
+                    Join an elite tier of developers and artificial intelligence architects. Collaborate on high-scale distributed systems, train custom models, and secure the future of software.
+                </p>
+                <a href="login.html" class="magnetic-btn primary hover-target" style="margin-top: 2rem; display: inline-block;"><span>Request Network Access</span></a>
+            </div>
+
+            <h2 class="section-title reveal hover-target" style="margin-bottom: 2rem;">Ecosystem Benefits</h2>
+            
+            <div class="grid-3">
+                <div class="tilt-card reveal hover-target" data-tilt>
+                    <div class="card-inner">
+                        <i class="fas fa-satellite-dish card-icon"></i>
+                        <h3>Global Sync</h3>
+                        <p>Learn faster by syncing ideas instantaneously with other engineers iterating on the same logic stacks.</p>
+                    </div>
+                </div>
+                
+                <div class="tilt-card reveal hover-target" data-tilt>
+                    <div class="card-inner">
+                        <i class="fas fa-clipboard-check card-icon"></i>
+                        <h3>Code Reviews</h3>
+                        <p>Submit your architectures to veteran protocol nodes for deep code reviews and security audits.</p>
+                    </div>
+                </div>
+                
+                <div class="tilt-card reveal hover-target" data-tilt>
+                    <div class="card-inner">
+                        <i class="fas fa-briefcase card-icon"></i>
+                        <h3>Portfolio Ledger</h3>
+                        <p>Commit your achievements to a central verifiable portfolio that commands respect from AI startups.</p>
+                    </div>
+                </div>
+                
+                <div class="tilt-card reveal hover-target" data-tilt>
+                    <div class="card-inner">
+                        <i class="fas fa-project-diagram card-icon"></i>
+                        <h3>Open Source Primitives</h3>
+                        <p>Contribute directly to our open-source model libraries and earn repository ranking status.</p>
+                    </div>
+                </div>
+
+                <div class="tilt-card reveal hover-target" data-tilt>
+                    <div class="card-inner">
+                        <i class="fas fa-shield-alt card-icon"></i>
+                        <h3>Zero-Downtime Support</h3>
+                        <p>Our decentralized communication hubs mean someone is always online to help decrypt a broken stack trace.</p>
+                    </div>
+                </div>
+                
+                <div class="tilt-card reveal hover-target" data-tilt>
+                    <div class="card-inner">
+                        <i class="fas fa-trophy card-icon"></i>
+                        <h3>Bounties & Challenges</h3>
+                        <p>Compete in algorithmic efficiency tournaments to earn exclusive API limits and computational credits.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Timeline / Steps -->
+        <section style="margin-top: 2rem;">
+            <div class="founder-box reveal hover-target" style="flex-direction: column; text-align: center;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 2rem;"><span class="gradient-text">Onboarding Sequence</span></h2>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 3rem; width: 100%;">
+                    
+                    <div style="flex: 1; min-width: 250px;">
+                        <div style="font-size: 4rem; font-family: var(--font-heading); color: var(--primary); font-weight: 900; opacity: 0.5;">01</div>
+                        <h3 style="font-size: 1.5rem; margin: 1rem 0;">Initialize</h3>
+                        <p style="color: var(--text-muted);">Create your cryptographic profile and gain access to the raw data streams.</p>
+                    </div>
+
+                    <div style="flex: 1; min-width: 250px;">
+                        <div style="font-size: 4rem; font-family: var(--font-heading); color: var(--secondary); font-weight: 900; opacity: 0.5;">02</div>
+                        <h3 style="font-size: 1.5rem; margin: 1rem 0;">Broadcast</h3>
+                        <p style="color: var(--text-muted);">Fork existing modules or push your custom neural networks for community tuning.</p>
+                    </div>
+
+                    <div style="flex: 1; min-width: 250px;">
+                        <div style="font-size: 4rem; font-family: var(--font-heading); color: var(--accent); font-weight: 900; opacity: 0.5;">03</div>
+                        <h3 style="font-size: 1.5rem; margin: 1rem 0;">Iterate</h3>
+                        <p style="color: var(--text-muted);">Process feedback, optimize your hyperparameters, and climb the engineer ranks.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 AI Code Lab Community. All rights reserved.</p>
+        <div class="footer-grid reveal">
+            <div>
+                <h2 class="footer-logo">CodeLab<span style="color:var(--primary)">.ai</span></h2>
+                <p class="footer-p">The frontier of learning.</p>
+            </div>
+        </div>
+        <div style="text-align: center; border-top: 1px solid var(--glass-border); padding-top: 2rem; margin-top:2rem; color:var(--text-muted); font-size: 0.9rem;">
+            &copy; 2026 CodeLab.ai Operations. All Rights Reserved.
+        </div>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>

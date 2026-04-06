@@ -3,440 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS Basics for Beginners | AICode Lab</title>
+    <title>Ai CodeLab - Core Documentation</title>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Modern Styles -->
+    <link rel="stylesheet" href="styles.css">
     <style>
-        /* CSS Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Variables */
-        :root {
-            --primary-color: #3498db;
-            --secondary-color: #2c3e50;
-            --accent-color: #e74c3c;
-            --text-color: #333;
-            --light-bg: #f5f5f5;
-            --code-bg: #f0f0f0;
-            --border-radius: 8px;
-            --box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        /* Base Styles */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-        }
-
-        h1, h2, h3 {
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 0.5rem;
-            margin-top: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        h3 {
-            font-size: 1.3rem;
-            margin-top: 1.5rem;
-        }
-
-        p {
-            margin-bottom: 1rem;
-        }
-
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        a:hover {
-            color: var(--accent-color);
-            text-decoration: underline;
-        }
-
-        code {
-            background-color: var(--code-bg);
-            padding: 0.1rem 0.3rem;
-            border-radius: 3px;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        pre {
-            background-color: var(--code-bg);
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            overflow-x: auto;
-            margin-bottom: 1.5rem;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        .example-box {
-            border: 1px solid #ddd;
-            border-radius: var(--border-radius);
-            margin-bottom: 2rem;
-            box-shadow: var(--box-shadow);
-        }
-
-        .example-code {
-            background-color: var(--code-bg);
-            padding: 1rem;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .example-result {
-            padding: 1rem;
-        }
-
-        .property-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 2rem;
-        }
-
-        .property-table th,
-        .property-table td {
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-
-        .property-table th {
-            background-color: var(--light-bg);
-        }
-
-        /* Layout */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        header {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 1rem 0;
-            margin-bottom: 2rem;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 1.5rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background-color: white;
-            margin: 2px 0;
-        }
-
-        main {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .content {
-            flex: 1 1 70%;
-            min-width: 300px;
-        }
-
-        /* .sidebar {
-            flex: 1 1 25%;
-            min-width: 250px;
-            background-color: var(--light-bg);
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            align-self: flex-start;
-            position: sticky;
-            top: 2rem;
-        } */
-
-        /* // Add this in the <style> section, update the .sidebar CSS: */
-.sidebar {
-    flex: 1 1 25%;
-    min-width: 250px;
-    background-color: var(--light-bg);
-    padding: 1.5rem;
-    border-radius: var(--border-radius);
-    position: sticky;
-    top: 2rem;
-    max-height: calc(100vh - 4rem);
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary-color) var(--light-bg);
-}
-
-/* Webkit scrollbar styling */
-.sidebar::-webkit-scrollbar {
-    width: 8px;
-}
-
-.sidebar::-webkit-scrollbar-track {
-    background: var(--light-bg);
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-    background-color: var(--primary-color);
-    border-radius: 4px;
-}
-
-/* Smooth scrolling for the whole document */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Update the topics-list links hover state */
-.topics-list a {
-    display: block;
-    padding: 0.5rem 0;
-    transition: all 0.3s ease;
-}
-
-.topics-list a:hover {
-    padding-left: 0.5rem;
-    background-color: rgba(52, 152, 219, 0.1);
-    border-radius: 4px;
-}
-
-/* Add active state for current section */
-.topics-list a.active {
-    color: var(--accent-color);
-    font-weight: bold;
-}
-
-        .topics-list {
-            list-style: none;
-        }
-
-        .topics-list li {
-            margin-bottom: 0.75rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .topics-list li:last-child {
-            border-bottom: none;
-        }
-
-        footer {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 2rem 0;
-            margin-top: 3rem;
-            text-align: center;
-        }
-
-        /* Demo content styling */
-        .demo-box {
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .text-red {
-            color: red;
-        }
-
-        .text-blue {
-            color: blue;
-        }
-
-        .text-green {
-            color: green;
-        }
-
-        .bg-yellow {
-            background-color: #ffffcc;
-        }
-
-        .bg-blue {
-            background-color: #e6f2ff;
-        }
-
-        .bg-green {
-            background-color: #e6ffe6;
-        }
-
-        .border-demo {
-            border: 2px solid black;
-            padding: 10px;
-            margin: 10px 0;
-        }
-
-        .margin-demo {
-            margin: 20px;
-            border: 1px solid blue;
-            background-color: #e6f2ff;
-        }
-
-        .padding-demo {
-            padding: 20px;
-            border: 1px solid green;
-            background-color: #e6ffe6;
-        }
-
-        .float-left {
-            float: left;
-            margin-right: 15px;
-            width: 100px;
-            height: 100px;
-            background-color: #ffcccc;
-            border: 1px solid #ff6666;
-            text-align: center;
-            line-height: 100px;
-        }
-
-        .clear-both {
-            clear: both;
-        }
-
-        .flex-container {
-            display: flex;
-            background-color: #f0f0f0;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-        }
-
-        .flex-item {
-            padding: 10px;
-            margin: 5px;
-            background-color: #ddeeff;
-            border: 1px solid #99ccff;
-            flex: 1;
-            text-align: center;
-        }
-
-        .grid-container {
+        .study-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 10px;
-            background-color: #f0f0f0;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
+            grid-template-columns: 3fr 1fr;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .grid-item {
-            background-color: #ddffee;
-            border: 1px solid #99eebb;
-            padding: 10px;
-            text-align: center;
+        .study-content {
+            background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 3rem;
+            backdrop-filter: blur(20px);
+            color: var(--text-pure);
+        }
+        
+        .study-content h1, .study-content h2, .study-content h3 {
+            color: var(--secondary);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 0.5rem;
+        }
+        
+        .study-content h1 {
+            color: var(--primary);
+            font-size: 3rem;
         }
 
-        /* Media Queries */
-        @media screen and (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-            }
+        .study-content p, .study-content li {
+            margin-bottom: 1.2rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
 
-            .nav-links {
-                display: none;
-                width: 100%;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                background-color: var(--secondary-color);
-                padding: 1rem;
-            }
+        .study-content ul, .study-content ol {
+            margin-left: 2rem;
+            margin-bottom: 2rem;
+        }
 
-            .nav-links.active {
-                display: flex;
-            }
+        .study-content pre {
+            background: rgba(0,0,0,0.6);
+            border: 1px solid var(--glass-border);
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            font-family: monospace;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
 
-            .nav-links li {
-                margin: 0.5rem 0;
-            }
+        .study-sidebar {
+            background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
 
-            main {
-                flex-direction: column;
-            }
+        .study-sidebar h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
 
-            .sidebar {
-                position: static;
-                width: 100%;
-                margin-bottom: 2rem;
-            }
+        .study-sidebar a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+            transition: all 0.3s;
+        }
+
+        .study-sidebar a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 900px) {
+            .study-grid { grid-template-columns: 1fr; }
+            .study-sidebar { position: relative; top: 0; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">AICode Lab</a>
-                <div class="menu-toggle" id="mobile-menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <ul class="nav-links" id="nav-links">
-                 <li>   <a target="_blank" href="codelab-html.html"><i class="fas fa-home"></i> HTML</a> </li>
-                 <li>   <a target="_blank" href="codelab-css.html"><i class="fas fa-graduation-cap"></i> CSS</a> </li>  
-                    <li>  <a target="_blank" href="codelab-javascript.html"><i class="fas fa-sign-in-alt"></i> JavaScript</a></li> 
-                    <li>  <a target="_blank" href="codelab-python.html"><i class="fas fa-book"></i> Python</a></li>
-                    <li>   <a target="_blank" href="codelab-java.html"><i class="fas fa-sign-in-alt"></i> Java</a> </li>
-                    <li>  <a target="_blank" href="codelab-cpp.html"><i class="fas fa-book"></i> C++</a></li>
-                </ul>
-            </nav>
+
+    <!-- Custom Cursor -->
+    <div id="custom-cursor"></div>
+
+    <!-- Animated Mesh Gradient Background -->
+    <div class="mesh-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Modern Extreme Navbar -->
+    <nav>
+        <div class="logo-container">
+            <i class="fas fa-robot"></i>
+            <span>CodeLab<span style="color:var(--primary)">.ai</span></span>
         </div>
+        <div class="nav-links">
+            <a href="index.html">Platform</a>
+            <a href="courses.html">Syllabus</a>
+            <a href="study.html" class="active">Resources</a>
+            <a href="join.html">Community</a>
+        </div>
+        <div style="display:flex;gap:10px;">
+            <a href="login.html" class="magnetic-btn" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;"><span>Login</span></a>
+        </div>
+    </nav>
+
+    <!-- Page Title Header -->
+    <header style="margin-top: 120px; text-align: center; padding: 2rem;">
+        <h1 class="hover-target" style="font-size: clamp(2.5rem, 5vw, 4rem);"><span class="gradient-text">Protocol</span> Documentation</h1>
     </header>
 
-    <div class="container">
-        <main>
-            <div class="content">
+    <main style="padding: 2rem;">
+        <div class="study-grid">
+            <div class="study-content reveal hover-target" data-tilt>
+<div class="content">
                 <h1>CSS Basics for Beginners</h1>
                 
                 <p>Welcome to AICode Lab's CSS tutorial for beginners! Cascading Style Sheets (CSS) is what makes the web beautiful. While HTML provides the structure of a webpage, CSS is responsible for how it looks.</p>
@@ -855,52 +558,44 @@ button:hover {
                     <li><a href="#">CSS Frameworks</a></li>
                     <li><a href="#">Practice Exercises</a></li>
                 </ul>
-            </aside>
-        </main>
-    </div>
+            </aside>\n            </div>\n            <aside class="study-sidebar reveal">\n<h2>Artical Topics</h2>
+                <ul class="topics-list">
+                    <li><a href="#what-is-css">What is CSS?</a></li>
+                    <li><a href="#how-to-add-css">How to Add CSS</a></li>
+                    <li><a href="#css-syntax">CSS Syntax</a></li>
+                    <li><a href="#css-selectors">CSS Selectors</a></li>
+                    <li><a href="#colors">CSS Colors</a></li>
+                    <li><a href="#text-styling">Text Styling</a></li>
+                    <li><a href="#box-model">CSS Box Model</a></li>
+                    <li><a href="#layout">CSS Layout</a></li>
+                    <li><a href="#responsive">Responsive Design</a></li>
+                    <li><a href="#transitions">CSS Transitions</a></li>
+                    <li><a href="#common-properties">Common Properties</a></li>
+                </ul>
 
+                <h3 style="margin-top: 2rem;">Resources</h3>
+                <ul class="topics-list">
+                    <li><a href="#">CSS Cheat Sheet</a></li>
+                    <li><a href="#">Advanced CSS Tutorial</a></li>
+                    <li><a href="#">CSS Frameworks</a></li>
+                    <li><a href="#">Practice Exercises</a></li>
+                </ul>\n            </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>&copy; 2025 AICode Lab. All rights reserved.</p>
+        <div class="footer-grid reveal">
+            <div>
+                <h2 class="footer-logo">CodeLab<span style="color:var(--primary)">.ai</span></h2>
+                <p class="footer-p">The frontier of learning.</p>
+            </div>
+        </div>
+        <div style="text-align: center; border-top: 1px solid var(--glass-border); padding-top: 2rem; margin-top:2rem; color:var(--text-muted); font-size: 0.9rem;">
+            &copy; 2026 CodeLab.ai Operations. All Rights Reserved.
         </div>
     </footer>
-
-    <script>
-        // Simple mobile menu toggle
-        document.getElementById('mobile-menu').addEventListener('click', function() {
-            document.getElementById('nav-links').classList.toggle('active');
-        });
-        // Add this before </body>
-
-    // Highlight active section in sidebar
-    const sections = document.querySelectorAll('h2[id]');
-    const navLinks = document.querySelectorAll('.topics-list a');
-
-    function highlightActiveSection() {
-        let scrollPosition = window.scrollY;
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            const sectionHeight = section.clientHeight;
-            const sectionId = section.getAttribute('id');
-
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + sectionId) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        });
-    }
-
-    // Listen for scroll events
-    window.addEventListener('scroll', highlightActiveSection);
-
-    // Initial check for active section
-    highlightActiveSection();
-
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

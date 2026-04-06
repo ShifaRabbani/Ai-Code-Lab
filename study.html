@@ -1,275 +1,172 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Material - Ai CodeLab</title>
+    <title>Ai CodeLab - Resources</title>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Modern Styles -->
+    <link rel="stylesheet" href="styles.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #2c3e50;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            color: white;
-            font-size: 2rem;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .main-nav {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .main-nav a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .main-nav a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+        .resources-grid {
             display: grid;
             grid-template-columns: 1fr 3fr;
-            gap: 2rem;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .sidebar {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .resource-sidebar {
+            background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
             position: sticky;
-            top: 90px;
+            top: 100px;
+            height: fit-content;
         }
 
-        .sidebar h2 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
+        .resource-sidebar h3 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
             padding-bottom: 0.5rem;
-            border-bottom: 2px solid #3498db;
         }
 
-        .resource-links {
+        .sidebar-link {
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .resource-links a {
-            color: #2c3e50;
-            text-decoration: none;
-            padding: 0.5rem;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            display: flex;
-            
             align-items: center;
-            gap: 0.5rem;
-        }
-
-        .resource-links a:hover {
-            background-color: #f0f0f0;
-            transform: translateX(5px);
-        }
-
-        .main-content {
-            background: white;
-            padding: 2rem;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            color: var(--text-pure);
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            margin-bottom: 0.5rem;
         }
 
-        .welcome-banner {
-            text-align: center;
-            padding: 2rem;
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            border-radius: 10px;
-            margin-bottom: 2rem;
+        .sidebar-link:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(10px);
+            color: var(--secondary);
         }
 
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .container {
+        @media (max-width: 900px) {
+            .resources-grid {
                 grid-template-columns: 1fr;
             }
-
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .main-nav {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .sidebar {
-                position: static;
+            .resource-sidebar {
+                position: relative;
+                top: 0;
             }
         }
     </style>
 </head>
 <body>
-    <header>
 
-        <div class="header-content">
-            <a  class="logo">
-                <i class="fas fa-robot"></i> Ai CodeLab
-            </a>
-            <nav class="main-nav">
-                <a href="index.html"><i class="fas fa-home"></i> Home</a>
-                <a href="courses.html"><i class="fas fa-graduation-cap"></i> Courses</a>
-                <a href="study.html"><i class="fas fa-book"></i> Study Material</a>
-                <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login/Sign Up</a>
-            </nav>
-        </div>
-    </header>
+    <!-- Custom Cursor -->
+    <div id="custom-cursor"></div>
 
-    <div class="container">
-        <aside class="sidebar">
-            <section>
-                <h2><i class="fas fa-book"></i> Learning Resources</h2>
-                <div class="resource-links">
-                    <a href="codelab-python.html"><i class="fab fa-python"></i> Python</a>
-                    <a href="codelab-java.html"><i class="fab fa-java"></i> Java</a>
-                    <a href="codelab-javascript.html"><i class="fab fa-js"></i> JavaScript</a>
-                    <a href="codelab-html.html"><i class="fab fa-html5"></i> HTML</a>
-                    <a href="codelab-css.html"><i class="fab fa-css3"></i> CSS</a>
-                    <a href="codelab-cpp.html"><i class="fas fa-code"></i> C++</a>
-                </div>
-            </section>
-
-            <section style="margin-top: 2rem;">
-                <h2><i class="fas fa-question-circle"></i> Practice Tests</h2>
-                <div class="resource-links">
-                    <a href="https://www.w3schools.com/quiztest/quiztest.asp?qtest=PYTHON"><i class="fas fa-check-circle"></i> Python Quiz</a>
-                    <a href="https://www.w3schools.com/quiztest/quiztest.asp?qtest=JAVA"><i class="fas fa-check-circle"></i> Java Quiz</a>
-                    <a href="https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS"><i class="fas fa-check-circle"></i> JavaScript Quiz</a>
-                    <a href="https://www.w3schools.com/quiztest/quiztest.asp?qtest=HTML"><i class="fas fa-check-circle"></i> Html</a>
-                    <a href="https://www.w3schools.com/quiztest/quiztest.asp?qtest=CSS"><i class="fas fa-check-circle"></i> CSS</a>
-                    <a href="https://www.w3schools.com/quiztest/quiztest.asp?qtest=CPP"><i class="fas fa-check-circle"></i> C++</a>
-                </div>
-            </section>
-        </aside>
-
-        <main class="main-content">
-            <div class="welcome-banner">
-                <h1><i class="fas fa-graduation-cap"></i> Welcome to Study Material</h1>
-                <p>Start your learning journey with our comprehensive resources</p>
-            </div>
-
-            <section>
-                <h2><i class="fas fa-book-open"></i> Featured Courses</h2>
-                <div class="card-grid">
-                    <div class="card">
-                        <i class="fab fa-python fa-3x" style="color: #3498db;"></i>
-                        <h3>Python Programming</h3>
-                        <p>Learn Python from basics to advanced concepts</p>
-                        <a href="codelab-python.html" class="resource-links">Start Learning →</a>
-                    </div>
-                    <div class="card">
-                        <i class="fab fa-java fa-3x" style="color: #3498db;"></i>
-                        <h3>Java Development</h3>
-                        <p>Master Java programming fundamentals</p>
-                        <a href="codelab-java.html" class="resource-links">Start Learning →</a>
-                    </div>
-                    <div class="card">
-                        <i class="fab fa-js fa-3x" style="color: #3498db;"></i>
-                        <h3>JavaScript</h3>
-                        <p>Build interactive web applications</p>
-                        <a href="codelab-javascript.html" class="resource-links">Start Learning →</a>
-                    </div>
-                    <div class="card">
-                        <i class="fas fa-code fa-3x" style="color: #3498db;"></i>
-                        <h3>C++</h3>
-                        <p>Build high-performance applications with C++ and unlock the power of system-level programming.</p>
-                        <a href="codelab-cpp.html" class="resource-links">Start Learning →</a>
-                    </div>
-                    <div class="card">
-                        <i class="fab fa-html5 fa-3x" style="color:#3498db;"></i>
-                        <h3>HTML</h3>
-                        <p>Learn the foundation of web development with HTML and create structured web pages.</p>
-                        <a href="codelab-html.html" class="resource-links">Start Learning →</a>
-                    </div>
-                    <div class="card">
-                        <i class="fab fa-css3-alt fa-3x" style="color: #3498db;"></i>
-                        <h3>CSS</h3>
-                        <p>Style and design beautiful web pages with CSS to enhance user experience.</p>
-                        <a href="codelab-css.html" class="resource-links">Start Learning →</a>
-                    </div>
-                    
-                </div>
-            </section>
-        </main>
+    <!-- Animated Mesh Gradient Background -->
+    <div class="mesh-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
     </div>
 
+    <!-- Modern Extreme Navbar -->
+    <nav>
+        <div class="logo-container">
+            <i class="fas fa-robot"></i>
+            <span>CodeLab<span style="color:var(--primary)">.ai</span></span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Platform</a>
+            <a href="courses.html">Syllabus</a>
+            <a href="study.html" class="active">Resources</a>
+            <a href="join.html">Community</a>
+        </div>
+        <div style="display:flex;gap:10px;">
+            <a href="login.html" class="magnetic-btn" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;"><span>Login</span></a>
+        </div>
+    </nav>
+
+    <!-- Page Title -->
+    <header style="margin-top: 120px; text-align: center; padding: 2rem;">
+        <h1 class="hover-target" style="font-size: clamp(2.5rem, 6vw, 4.5rem);"><span class="gradient-text">Study</span> Material</h1>
+    </header>
+
+    <main style="padding: 2rem;">
+        <div class="resources-grid">
+            <!-- Sidebar -->
+            <aside class="resource-sidebar reveal">
+                <h3><i class="fas fa-vial"></i> Live Exams</h3>
+                <a href="https://www.w3schools.com/quiztest/quiztest.asp?qtest=PYTHON" target="_blank" class="sidebar-link hover-target"><i class="fas fa-check-circle"></i> Python Protocol</a>
+                <a href="https://www.w3schools.com/quiztest/quiztest.asp?qtest=JAVA" target="_blank" class="sidebar-link hover-target"><i class="fas fa-check-circle"></i> Java Protocol</a>
+                <a href="https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS" target="_blank" class="sidebar-link hover-target"><i class="fas fa-check-circle"></i> JS Protocol</a>
+                <a href="https://www.w3schools.com/quiztest/quiztest.asp?qtest=HTML" target="_blank" class="sidebar-link hover-target"><i class="fas fa-check-circle"></i> HTML Protocol</a>
+                <a href="https://www.w3schools.com/quiztest/quiztest.asp?qtest=CSS" target="_blank" class="sidebar-link hover-target"><i class="fas fa-check-circle"></i> CSS Protocol</a>
+                <a href="https://www.w3schools.com/quiztest/quiztest.asp?qtest=CPP" target="_blank" class="sidebar-link hover-target"><i class="fas fa-check-circle"></i> C++ Protocol</a>
+            </aside>
+
+            <!-- Main Library -->
+            <div class="grid-3" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                <!-- Python Card -->
+                <div class="tilt-card reveal hover-target" data-tilt>
+                    <div class="card-inner">
+                        <i class="fab fa-python card-icon"></i>
+                        <h3>Python Resources</h3>
+                        <p>Complete official documentation, deep learning notebooks, and AI framework snippets.</p>
+                        <a href="codelab-python.html" style="color:var(--secondary); margin-top: 1rem; display: inline-block;">Access Library &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Java Card -->
+                <div class="tilt-card reveal hover-target" data-tilt>
+                    <div class="card-inner">
+                        <i class="fab fa-java card-icon"></i>
+                        <h3>Java Resources</h3>
+                        <p>JVM performance scaling tuning guides and core data structure implementations.</p>
+                        <a href="codelab-java.html" style="color:var(--secondary); margin-top: 1rem; display: inline-block;">Access Library &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Javascript Card -->
+                <div class="tilt-card reveal hover-target" data-tilt>
+                    <div class="card-inner">
+                        <i class="fab fa-js card-icon"></i>
+                        <h3>JS Resources</h3>
+                        <p>Async networking guides, DOM tracking, and interactive canvas logic.</p>
+                        <a href="codelab-javascript.html" style="color:var(--secondary); margin-top: 1rem; display: inline-block;">Access Library &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- C++ Card -->
+                <div class="tilt-card reveal hover-target" data-tilt>
+                    <div class="card-inner">
+                        <i class="fas fa-microchip card-icon"></i>
+                        <h3>C++ Resources</h3>
+                        <p>Pointers, memory management, and high-performance algorithms.</p>
+                        <a href="codelab-cpp.html" style="color:var(--secondary); margin-top: 1rem; display: inline-block;">Access Library &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
     <footer>
-        <h3>Thanks for visiting Ai CodeLab!</h3>
-        <p>© 2025 Ai CodeLab - Empowering coders for the future</p>
+        <div class="footer-grid reveal">
+            <div>
+                <h2 class="footer-logo">CodeLab<span style="color:var(--primary)">.ai</span></h2>
+                <p class="footer-p">The frontier of learning.</p>
+            </div>
+        </div>
+        <div style="text-align: center; border-top: 1px solid var(--glass-border); padding-top: 2rem; margin-top:2rem; color:var(--text-muted); font-size: 0.9rem;">
+            &copy; 2026 CodeLab.ai Operations. All Rights Reserved.
+        </div>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
